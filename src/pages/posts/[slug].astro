@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IeltsSpeakingBody from '../../components/posts/IeltsSpeakingBody.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <nav class="post-nav">
+    <a href={import.meta.env.BASE_URL} class="post-nav-back">← All Posts</a>
+  </nav>
+  {post.slug === 'ielts-speaking'
+    ? <IeltsSpeakingBody />
+    : <div class="prose"><Content /></div>
+  }
+</BaseLayout>
