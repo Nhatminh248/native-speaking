@@ -5,6 +5,7 @@ import IeltsSpeakingBody from '../../components/posts/IeltsSpeakingBody.astro';
 import IeltsWritingTaskTypesBody from '../../components/posts/IeltsWritingTaskTypesBody.astro';
 import IeltsWritingOpinionAnalysisBody from '../../components/posts/IeltsWritingOpinionAnalysisBody.astro';
 import IeltsWritingDiscussionAnalysisBody from '../../components/posts/IeltsWritingDiscussionAnalysisBody.astro';
+import IeltsWritingAdvDisadvAnalysisBody from '../../components/posts/IeltsWritingAdvDisadvAnalysisBody.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -29,6 +30,8 @@ const { Content } = await post.render();
     ? <IeltsWritingOpinionAnalysisBody />
     : post.slug === 'ielts-writing-discussion-analysis'
     ? <IeltsWritingDiscussionAnalysisBody />
+    : post.slug === 'ielts-writing-adv-disadv-analysis'
+    ? <IeltsWritingAdvDisadvAnalysisBody />
     : <div class="prose"><Content /></div>
   }
 </BaseLayout>
