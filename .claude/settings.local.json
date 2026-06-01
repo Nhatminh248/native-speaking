@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npm install *)",
       "WebSearch",
-      "WebFetch(domain:ieltsliz.com)"
+      "WebFetch(domain:ieltsliz.com)",
+      "Bash(npm run *)"
     ]
   }
 }
