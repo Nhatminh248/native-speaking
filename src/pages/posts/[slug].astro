@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import IeltsSpeakingBody from '../../components/posts/IeltsSpeakingBody.astro';
+import IeltsWritingTaskTypesBody from '../../components/posts/IeltsWritingTaskTypesBody.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -20,6 +21,8 @@ const { Content } = await post.render();
   </nav>
   {post.slug === 'ielts-speaking'
     ? <IeltsSpeakingBody />
+    : post.slug === 'ielts-writing-task-types'
+    ? <IeltsWritingTaskTypesBody />
     : <div class="prose"><Content /></div>
   }
 </BaseLayout>
