@@ -1,0 +1,656 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const topics = [
+  {
+    id: 'technology',
+    name: 'Technology',
+    icon: '🚀',
+    items: [
+      { phrase: 'Cutting-edge technology', vn: 'Công nghệ tối tân', sentence: 'Should governments fail to invest in cutting-edge technology, their domestic industries might suffer from a lack of competitiveness in the global market, which is increasingly dominated by AI-driven automation.' },
+      { phrase: 'Technological disruption', vn: 'Sự gián đoạn công nghệ', sentence: 'The rapid pace of technological disruption, while potentially displacing certain traditional jobs, has simultaneously created a plethora of new opportunities in fields that were inconceivable a decade ago.' },
+      { phrase: 'To bridge the digital divide', vn: 'Xóa bỏ khoảng cách kỹ thuật số', sentence: 'To bridge the digital divide, it is imperative that rural areas be provided with high-speed internet access, without which they will continue to lag behind urban centers in terms of educational and economic opportunities.' },
+      { phrase: 'Ubiquitous internet access', vn: 'Truy cập internet khắp mọi nơi', sentence: 'While ubiquitous internet access has democratized information, it has also facilitated the spread of misinformation, which can have detrimental effects on public discourse.' },
+      { phrase: 'Information overload', vn: 'Quá tải thông tin', sentence: 'In an era of constant notifications and infinite scrolling, many individuals suffer from information overload, which can lead to increased stress and reduced attention spans.' },
+      { phrase: 'Cybersecurity threats', vn: 'Mối đe dọa an ninh mạng', sentence: 'As more sensitive data is stored on cloud platforms, the risk posed by cybersecurity threats has escalated, necessitating more robust encryption methods to safeguard personal information.' },
+      { phrase: 'AI-driven solutions', vn: 'Giải pháp dựa trên AI', sentence: 'By implementing AI-driven solutions to optimize logistics, corporations can significantly reduce their operational costs, thereby allowing for lower prices for consumers.' },
+      { phrase: 'To harness the power of technology', vn: 'Khai thác sức mạnh công nghệ', sentence: 'Only by harnessing the power of technology can we hope to solve complex global issues such as climate change and food insecurity, both of which require innovative engineering solutions.' },
+      { phrase: 'Tech-savvy generation', vn: 'Thế hệ am hiểu công nghệ', sentence: 'Growing up in an era defined by rapid progress, the tech-savvy generation possesses an innate ability to adapt to new interfaces and software much faster than their predecessors.' },
+      { phrase: 'To revolutionize the way people communicate', vn: 'Cách mạng hóa cách giao tiếp', sentence: 'The advent of smartphones has revolutionized the way people communicate, allowing for instantaneous video calls regardless of geographical distances.' },
+      { phrase: 'Digital transformation', vn: 'Chuyển đổi kỹ thuật số', sentence: 'The digital transformation of public services, though challenging for the elderly to navigate initially, has proven to be an efficient way of reducing bureaucratic delays.' },
+      { phrase: 'To stifle innovation', vn: 'Kìm hãm sự đổi mới', sentence: 'Excessive government regulation, though intended to protect consumers, can sometimes stifle innovation by imposing prohibitive costs on startups that are developing groundbreaking products.' },
+      { phrase: 'Automation of manual tasks', vn: 'Tự động hóa các tác vụ thủ công', sentence: 'The automation of manual tasks in the manufacturing sector has led to concerns regarding structural unemployment, especially among low-skilled workers whose roles are easily replaced by robots.' },
+      { phrase: 'Obsolete gadgets', vn: 'Thiết bị lỗi thời', sentence: 'As technology advances at an exponential rate, gadgets that were considered revolutionary just a few years ago quickly become obsolete, contributing to the growing problem of electronic waste.' },
+      { phrase: 'High-speed connectivity', vn: 'Kết nối tốc độ cao', sentence: 'The rollout of 5G networks, providing high-speed connectivity with low latency, is expected to enable the widespread adoption of autonomous vehicles.' },
+      { phrase: 'Virtual reality immersion', vn: 'Sự đắm chìm trong thực tế ảo', sentence: 'Virtual reality immersion offers students the chance to explore historical sites or scientific phenomena in a way that traditional textbooks cannot replicate.' },
+      { phrase: 'Social media integration', vn: 'Tích hợp mạng xã hội', sentence: 'The seamless social media integration into daily life has changed how brands interact with consumers, shifting the focus from traditional advertising to influencer-led marketing.' },
+      { phrase: 'Algorithm-based content', vn: 'Nội dung dựa trên thuật toán', sentence: 'Concern has been raised that algorithm-based content on video platforms may create echo chambers, where users are only exposed to viewpoints that align with their existing beliefs.' },
+      { phrase: 'E-commerce platforms', vn: 'Nền tảng thương mại điện tử', sentence: 'The rise of e-commerce platforms has fundamentally altered retail landscapes, causing many brick-and-mortar stores to struggle or close down.' },
+      { phrase: 'To undergo a paradigm shift', vn: 'Trải qua một sự thay đổi mô hình', sentence: 'The education sector is undergoing a paradigm shift, moving away from rote memorization towards a more interactive, technology-based learning model.' },
+      { phrase: 'Smart home appliances', vn: 'Thiết bị gia dụng thông minh', sentence: 'Smart home appliances, which can be controlled remotely via a smartphone, have significantly increased energy efficiency by allowing users to monitor their electricity consumption in real-time.' },
+      { phrase: 'To promote digital literacy', vn: 'Thúc đẩy kiến thức kỹ thuật số', sentence: 'It is essential to promote digital literacy among all age groups to ensure that everyone can participate safely and effectively in the modern digital economy.' },
+      { phrase: 'Emergence of new technologies', vn: 'Sự xuất hiện các công nghệ mới', sentence: 'The emergence of new technologies such as quantum computing promises to solve mathematical problems that are currently beyond the reach of conventional supercomputers.' },
+      { phrase: 'To pose a significant challenge', vn: 'Đặt ra một thách thức đáng kể', sentence: 'The ethical implications of gene editing pose a significant challenge to lawmakers, who must balance the potential for curing diseases with the risk of unintended consequences.' },
+      { phrase: 'To improve productivity and efficiency', vn: 'Cải thiện năng suất và hiệu quả', sentence: 'Implementing project management software across the organization is likely to improve productivity and efficiency by reducing the time spent on administrative coordination.' },
+      { phrase: 'Telemedicine services', vn: 'Dịch vụ y tế từ xa', sentence: 'During the pandemic, telemedicine services became a vital tool for providing medical consultations without risking the spread of the virus.' },
+      { phrase: 'Biometric authentication', vn: 'Xác thực sinh trắc học', sentence: 'Biometric authentication, including fingerprint and facial recognition, is increasingly being used to secure mobile devices and sensitive facility entrances.' },
+      { phrase: 'Genetic engineering', vn: 'Kỹ thuật di truyền', sentence: 'Genetic engineering, despite being a controversial topic, offers the potential to create crops that are resistant to pests and drought, thereby enhancing food security.' },
+      { phrase: 'To pave the way for future developments', vn: 'Mở đường cho các phát triển tương lai', sentence: 'Current research into artificial general intelligence is expected to pave the way for future developments that could redefine the relationship between humans and machines.' },
+      { phrase: 'Technological advancements', vn: 'Tiến bộ công nghệ', sentence: 'Technological advancements in the field of renewable energy have brought down the cost of solar and wind power, making them competitive with fossil fuels.' },
+      { phrase: 'To digitize records', vn: 'Số hóa hồ sơ', sentence: 'By digitizing historical records, libraries ensure that future generations can access valuable cultural artifacts from anywhere in the world.' },
+      { phrase: 'User-friendly interface', vn: 'Giao diện thân thiện người dùng', sentence: 'A user-friendly interface is paramount for the success of any application, as it minimizes the learning curve and encourages long-term adoption.' },
+      { phrase: 'Cloud-based storage', vn: 'Lưu trữ đám mây', sentence: 'Cloud-based storage allows for seamless collaboration among team members, regardless of their physical location, by providing real-time access to shared documents.' },
+      { phrase: 'State-of-the-art infrastructure', vn: 'Cơ sở hạ tầng hiện đại', sentence: 'Developing nations must invest in state-of-the-art infrastructure if they are to attract foreign investment and participate in the global digital economy.' },
+      { phrase: 'To automate repetitive tasks', vn: 'Tự động hóa tác vụ lặp lại', sentence: 'Using AI to automate repetitive tasks not only increases efficiency but also frees up human workers to engage in more creative and strategic endeavors.' },
+      { phrase: 'Unintended consequences', vn: 'Hệ quả không lường trước', sentence: 'The rapid rollout of new technology often brings unintended consequences, such as the erosion of privacy or the displacement of certain labor segments.' },
+      { phrase: 'Technical expertise', vn: 'Chuyên môn kỹ thuật', sentence: 'Possessing technical expertise in niche fields like cybersecurity is increasingly becoming a requirement for high-level positions in the modern workforce.' },
+      { phrase: 'Data-driven decision making', vn: 'Ra quyết định dựa trên dữ liệu', sentence: 'Data-driven decision making has replaced intuition in many corporate boardrooms, leading to more predictable outcomes and optimized strategies.' },
+      { phrase: 'To streamline complex processes', vn: 'Tối giản các quy trình phức tạp', sentence: 'Modern software is designed to streamline complex processes, allowing users to achieve in minutes what used to take hours of manual effort.' },
+      { phrase: 'Sustainable technology', vn: 'Công nghệ bền vững', sentence: 'The shift towards sustainable technology is no longer optional, as global environmental pressures demand more energy-efficient and low-impact solutions.' }
+    ]
+  },
+  {
+    id: 'environment',
+    name: 'Environment',
+    icon: '🌿',
+    items: [
+      { phrase: 'Environmental degradation', vn: 'Suy thoái môi trường', sentence: 'If we continue to ignore the signs of environmental degradation, such as the loss of topsoil and the contamination of groundwater, we risk leaving an uninhabitable planet for our descendants.' },
+      { phrase: 'To mitigate climate change', vn: 'Giảm thiểu biến đổi khí hậu', sentence: 'To mitigate climate change effectively, a global transition towards a carbon-neutral economy must be accelerated, requiring unprecedented levels of international cooperation.' },
+      { phrase: 'Carbon footprint', vn: 'Dấu chân carbon', sentence: 'Individuals can play their part in protecting the planet by reducing their carbon footprint through mindful consumption and the adoption of more sustainable modes of transport.' },
+      { phrase: 'Renewable energy sources', vn: 'Nguồn năng lượng tái tạo', sentence: 'Transitioning from fossil fuels to renewable energy sources is not only an environmental necessity but also an economic opportunity to create millions of green jobs.' },
+      { phrase: 'Sustainable development', vn: 'Phát triển bền vững', sentence: 'The concept of sustainable development emphasizes that economic growth should not come at the expense of environmental integrity or social equity.' },
+      { phrase: 'Ecological balance', vn: 'Cân bằng sinh thái', sentence: 'The introduction of invasive species into a new environment can disrupt the delicate ecological balance, leading to the extinction of native flora and fauna.' },
+      { phrase: 'To deplete natural resources', vn: 'Làm cạn kiệt tài nguyên', sentence: 'Human activities continue to deplete natural resources at a rate that exceeds the planet\'s ability to regenerate them, threatening the long-term survival of our species.' },
+      { phrase: 'Greenhouse gas emissions', vn: 'Phát thải khí nhà kính', sentence: 'Should major industrial nations fail to curb their greenhouse gas emissions, the resulting rise in global temperatures could lead to catastrophic sea-level rises.' },
+      { phrase: 'To combat global warming', vn: 'Chống lại sự nóng lên toàn cầu', sentence: 'To combat global warming, it is essential that we invest in carbon capture technology, which has the potential to remove existing carbon dioxide from the atmosphere.' },
+      { phrase: 'Loss of biodiversity', vn: 'Mất đa dạng sinh học', sentence: 'The rapid loss of biodiversity, driven largely by habitat destruction and climate change, poses a significant threat to the ecosystem services that humans depend on.' },
+      { phrase: 'Habitat destruction', vn: 'Phá hủy môi trường sống', sentence: 'Tropical rainforests are being cleared at an alarming rate for agricultural expansion, a form of habitat destruction that contributes significantly to global carbon emissions.' },
+      { phrase: 'Sustainable agriculture', vn: 'Nông nghiệp bền vững', sentence: 'By promoting sustainable agriculture techniques like crop rotation and organic farming, we can maintain soil health and reduce the need for harmful chemical pesticides.' },
+      { phrase: 'Deforestation and reforestation', vn: 'Phá rừng và tái trồng rừng', sentence: 'While deforestation continues to be a major concern, large-scale reforestation projects offer a glimmer of hope for restoring lost ecosystems and sequestering carbon.' },
+      { phrase: 'Endangered species', vn: 'Loài có nguy cơ tuyệt chủng', sentence: 'The protection of endangered species requires not only the enforcement of anti-poaching laws but also the preservation of the vast habitats they need to thrive.' },
+      { phrase: 'Toxic waste disposal', vn: 'Xử lý chất thải độc hại', sentence: 'Inadequate toxic waste disposal can lead to the contamination of soil and water, posing severe health risks to nearby communities and damaging local wildlife.' },
+      { phrase: 'To promote environmental awareness', vn: 'Thúc đẩy nhận thức môi trường', sentence: 'Educational programs designed to promote environmental awareness among children are crucial for fostering a generation that values and protects the natural world.' },
+      { phrase: 'Energy-efficient buildings', vn: 'Tòa nhà tiết kiệm năng lượng', sentence: 'The construction of energy-efficient buildings, which utilize passive solar design and high-quality insulation, can significantly reduce the energy demand of urban areas.' },
+      { phrase: 'Urban sprawl', vn: 'Sự mở rộng đô thị tràn lan', sentence: 'The phenomenon of urban sprawl, characterized by the outward expansion of cities into rural areas, often leads to the destruction of valuable farmland and natural habitats.' },
+      { phrase: 'Natural disasters', vn: 'Thiên tai', sentence: 'As global temperatures rise, the frequency and intensity of natural disasters such as hurricanes and wildfires are expected to increase, placing millions of people at risk.' },
+      { phrase: 'Climate change adaptation', vn: 'Thích ứng biến đổi khí hậu', sentence: 'In addition to mitigation efforts, many coastal cities are investing in climate change adaptation strategies, such as building sea walls and improving drainage systems.' },
+      { phrase: 'Marine conservation', vn: 'Bảo tồn biển', sentence: 'Marine conservation efforts are increasingly focused on reducing plastic pollution, which has become a ubiquitous threat to sea life from the surface to the deepest trenches.' },
+      { phrase: 'To preserve the environment for future generations', vn: 'Bảo tồn môi trường cho tương lai', sentence: 'We have a moral obligation to preserve the environment for future generations, ensuring that they have access to the same natural beauty and resources that we enjoy.' },
+      { phrase: 'Circular economy', vn: 'Kinh tế tuần hoàn', sentence: 'Moving towards a circular economy, where products are designed for longevity and easy recycling, is essential for decoupling economic growth from resource consumption.' },
+      { phrase: 'Plastic pollution in oceans', vn: 'Ô nhiễm nhựa đại dương', sentence: 'The accumulation of plastic pollution in oceans is not just an aesthetic issue; it also leads to the ingestion of microplastics by marine organisms, which can eventually enter the human food chain.' },
+      { phrase: 'To address environmental concerns', vn: 'Giải quyết quan ngại môi trường', sentence: 'International summits provide a platform for world leaders to address environmental concerns and commit to binding targets for reducing carbon emissions.' },
+      { phrase: 'Environmental impact assessment', vn: 'Đánh giá tác động môi trường', sentence: 'Before any major infrastructure project is approved, a comprehensive environmental impact assessment must be conducted to identify and mitigate potential risks.' },
+      { phrase: 'Climate refugees', vn: 'Người tị nạn khí hậu', sentence: 'The rise in sea levels is expected to create millions of climate refugees, people who are forced to leave their homes due to the direct impact of environmental changes.' },
+      { phrase: 'To advocate for environmental protection', vn: 'Vận động bảo vệ môi trường', sentence: 'Non-governmental organizations play a critical role in advocating for environmental protection, often acting as a bridge between the public and policymakers.' },
+      { phrase: 'Renewable energy subsidies', vn: 'Trợ cấp năng lượng tái tạo', sentence: 'By providing renewable energy subsidies, governments can help clean technologies become more cost-competitive with traditional fossil fuels.' },
+      { phrase: 'To safeguard natural habitats', vn: 'Bảo vệ môi trường sống tự nhiên', sentence: 'Legislative measures intended to safeguard natural habitats must be rigorously enforced to prevent further encroachment by industrial activities.' },
+      { phrase: 'Ozone layer depletion', vn: 'Suy giảm tầng ozone', sentence: 'The successful international effort to phase out chlorofluorocarbons has demonstrated that global action can effectively reverse ozone layer depletion.' },
+      { phrase: 'Air and water pollution', vn: 'Ô nhiễm không khí và nước', sentence: 'In many rapidly industrializing nations, air and water pollution have reached levels that are detrimental to public health, necessitating stricter environmental regulations.' },
+      { phrase: 'Overfishing and sustainable fishing', vn: 'Đánh bắt quá mức và bền vững', sentence: 'To address the problem of overfishing, international bodies must implement and enforce quotas that promote sustainable fishing practices.' },
+      { phrase: 'To reduce, reuse, and recycle', vn: 'Giảm thiểu, tái sử dụng, tái chế', sentence: 'Adhering to the principles of reduce, reuse, and recycle is a simple yet effective way for individuals to minimize their contribution to the growing global waste problem.' },
+      { phrase: 'Environmental legislation', vn: 'Pháp luật về môi trường', sentence: 'Strong environmental legislation, backed by rigorous enforcement, is necessary to hold companies accountable for their impact on the planet.' },
+      { phrase: 'Clean water scarcity', vn: 'Khan hiếm nước sạch', sentence: 'Clean water scarcity is becoming a major source of geopolitical tension in many parts of the world, highlighting the need for more efficient water management technologies.' },
+      { phrase: 'To protect the ecosystem', vn: 'Bảo vệ hệ sinh thái', sentence: 'Establishing protected marine areas is a vital step towards protecting the ecosystem and ensuring the long-term viability of global fish stocks.' },
+      { phrase: 'Wildlife protection', vn: 'Bảo vệ động vật hoang dã', sentence: 'Effective wildlife protection involves not only guarding animals against hunters but also addressing the underlying economic drivers of the illegal wildlife trade.' },
+      { phrase: 'Global environmental crisis', vn: 'Khủng hoảng môi trường toàn cầu', sentence: 'The current global environmental crisis requires a fundamental shift in how we value nature, moving away from a model of extraction towards one of stewardship.' },
+      { phrase: 'Carbon-neutral footprint', vn: 'Dấu chân carbon trung tính', sentence: 'Achieving a carbon-neutral footprint is a complex goal that requires not just emission reduction but also significant investment in carbon sequestration projects.' }
+    ]
+  },
+  {
+    id: 'education',
+    name: 'Education',
+    icon: '🎓',
+    items: [
+      { phrase: 'To pursue higher education', vn: 'Theo đuổi giáo dục bậc cao', sentence: 'While many students choose to pursue higher education immediately after high school, others opt for a gap year to gain practical experience and a broader perspective on life.' },
+      { phrase: 'A well-rounded education', vn: 'Nền giáo dục toàn diện', sentence: 'It is often argued that a well-rounded education, which includes the arts and humanities alongside science and math, is essential for developing empathetic and critical thinkers.' },
+      { phrase: 'Vocational training', vn: 'Đào tạo nghề', sentence: 'For those who prefer hands-on learning, vocational training provides a viable alternative to traditional academic paths, equipping them with the practical skills needed for various trades.' },
+      { phrase: 'Critical thinking skills', vn: 'Kỹ năng tư duy phản biện', sentence: 'Instead of relying on rote memorization, modern educators aim to foster critical thinking skills, enabling students to analyze information objectively and make informed decisions.' },
+      { phrase: 'Lifelong learning', vn: 'Học tập suốt đời', sentence: 'In a rapidly changing job market, the concept of lifelong learning has become increasingly important, as workers must continuously update their skills to remain employable.' },
+      { phrase: 'Equal access to education', vn: 'Tiếp cận giáo dục bình đẳng', sentence: 'Ensuring equal access to education regardless of socioeconomic background is a fundamental pillar of a just society, as it promotes social mobility and reduces inequality.' },
+      { phrase: 'Educational curriculum', vn: 'Chương trình giảng dạy', sentence: 'The educational curriculum must be regularly updated to reflect the latest scientific discoveries and social developments, ensuring that students are prepared for the modern world.' },
+      { phrase: 'To improve teaching standards', vn: 'Cải thiện tiêu chuẩn giảng dạy', sentence: 'Investing in professional development for educators is one of the most effective ways to improve teaching standards and, consequently, student learning outcomes.' },
+      { phrase: 'Distance learning', vn: 'Học từ xa', sentence: 'The widespread adoption of distance learning has made education more accessible to those who live in remote areas or who have work and family commitments.' },
+      { phrase: 'Holistic development', vn: 'Phát triển toàn diện', sentence: 'A schools\' mission should go beyond academic achievement to include the holistic development of students, focusing on their physical, emotional, and social well-being.' },
+      { phrase: 'To instill values', vn: 'Thấm nhuần các giá trị', sentence: 'Schools play a crucial role in instilling values such as integrity, respect, and social responsibility in young people, shaping them into conscientious citizens.' },
+      { phrase: 'To provide scholarships', vn: 'Cấp học bổng', sentence: 'To provide scholarships for talented students from low-income families is an investment in the future, as it allows them to reach their full potential regardless of their financial situation.' },
+      { phrase: 'To develop soft skills', vn: 'Phát triển kỹ năng mềm', sentence: 'In addition to technical knowledge, universities are increasingly emphasizing the need for students to develop soft skills like communication, teamwork, and leadership.' },
+      { phrase: 'To bridge the educational gap', vn: 'Rút ngắn khoảng cách giáo dục', sentence: 'To bridge the educational gap between urban and rural schools, governments must ensure that funding and resources are distributed more equitably across all regions.' },
+      { phrase: 'To encourage independent learning', vn: 'Khuyến khích việc tự học', sentence: 'The shift towards student-centered models aims to encourage independent learning, where students take responsibility for their own education and research.' },
+      { phrase: 'To nurture talent', vn: 'Nuôi dưỡng tài năng', sentence: 'Special schools for the arts or sciences are designed to nurture talent in gifted children, providing them with the specialized environment they need to excel.' },
+      { phrase: 'To equip students with skills', vn: 'Trang bị kỹ năng cho học sinh', sentence: 'The ultimate goal of vocational education is to equip students with skills that are directly applicable to the job market, reducing the mismatch between education and employment.' },
+      { phrase: 'Inclusive education', vn: 'Giáo dục hòa nhập', sentence: 'Inclusive education programs aim to integrate students with disabilities into mainstream classrooms, promoting a culture of acceptance and diversity.' },
+      { phrase: 'To enhance cognitive abilities', vn: 'Nâng cao khả năng nhận thức', sentence: 'Engaging in complex problem-solving activities and learning a second language are effective ways to enhance cognitive abilities in students of all ages.' },
+      { phrase: 'To realize one\'s full potential', vn: 'Hiện thực hóa tiềm năng tối đa', sentence: 'A truly effective education system is one that provides every individual with the support and opportunities they need to realize their full potential.' },
+      { phrase: 'To gain in-depth knowledge', vn: 'Tiếp thu kiến thức chuyên sâu', sentence: 'The primary goal of a university degree is to allow students to gain in-depth knowledge in a specific field, preparing them for highly specialized professional careers.' },
+      { phrase: 'Academic performance', vn: 'Kết quả học tập', sentence: 'While academic performance is often used as a benchmark for success, it should not be the sole indicator of a student\'s potential or future contributions to society.' },
+      { phrase: 'To foster creativity', vn: 'Thúc đẩy sáng tạo', sentence: 'Educational systems that encourage students to explore unconventional ideas are more likely to foster creativity, which is a key driver of innovation in any field.' },
+      { phrase: 'To promote literacy', vn: 'Thúc đẩy việc học chữ', sentence: 'Government initiatives to promote literacy in underprivileged communities are essential for empowering individuals and breaking the cycle of poverty.' },
+      { phrase: 'Specialized training', vn: 'Đào tạo chuyên biệt', sentence: 'Many professions, such as medicine and engineering, require years of specialized training that combines theoretical study with rigorous practical experience.' },
+      { phrase: 'Student engagement', vn: 'Sự tham gia của học sinh', sentence: 'Active student engagement, where learners are encouraged to participate in discussions and projects, has been shown to lead to higher levels of retention and understanding.' },
+      { phrase: 'To broaden one\'s horizons', vn: 'Mở rộng tầm hiểu biết', sentence: 'Studying abroad offers students a unique opportunity to broaden their horizons by experiencing different cultures and educational systems firsthand.' },
+      { phrase: 'Academic excellence', vn: 'Sự xuất sắc trong học thuật', sentence: 'While striving for academic excellence is commendable, it is important to ensure that students do not suffer from excessive stress or burnout in the pursuit of high grades.' },
+      { phrase: 'Teacher-student ratio', vn: 'Tỷ lệ giáo viên/học sinh', sentence: 'A low teacher-student ratio allows for more personalized attention, which can be particularly beneficial for students who are struggling with certain subjects.' },
+      { phrase: 'Educational resources', vn: 'Nguồn lực giáo dục', sentence: 'The availability of modern educational resources, such as laboratories and libraries, can significantly enhance the quality of the learning experience.' },
+      { phrase: 'To overcome learning difficulties', vn: 'Vượt qua khó khăn học tập', sentence: 'Early intervention programs are vital for helping children to overcome learning difficulties such as dyslexia, ensuring that they do not fall behind their peers.' },
+      { phrase: 'Peer pressure in schools', vn: 'Áp lực bạn bè trong trường học', sentence: 'While peer pressure in schools is often viewed negatively, it can also be a positive force if it encourages students to participate in constructive activities like sports or volunteering.' },
+      { phrase: 'Continuous assessment', vn: 'Đánh giá liên tục', sentence: 'Many educators prefer continuous assessment over a single final exam, as it provides a more accurate and comprehensive picture of a student\'s progress throughout the year.' },
+      { phrase: 'Standardized testing', vn: 'Kiểm tra tiêu chuẩn hóa', sentence: 'Although standardized testing provides a way to compare performance across different schools, it has been criticized for encouraging teachers to "teach to the test" rather than fostering a deep understanding of the subject.' },
+      { phrase: 'Educational reform', vn: 'Cải cách giáo dục', sentence: 'Comprehensive educational reform is often necessary to address systemic issues and ensure that the schooling system meets the needs of a 21st-century economy.' },
+      { phrase: 'Knowledge-based economy', vn: 'Nền kinh tế tri thức', sentence: 'In a knowledge-based economy, the most valuable asset a nation has is the skill and expertise of its workforce, making education a top priority for national development.' },
+      { phrase: 'Pedagogy and teaching methods', vn: 'Sư phạm và phương pháp giảng dạy', sentence: 'Research into pedagogy and teaching methods has led to the development of more inclusive and effective ways of reaching students with diverse learning styles.' },
+      { phrase: 'Financial literacy education', vn: 'Giáo dục kiến thức tài chính', sentence: 'Introducing financial literacy education in high schools can help young people make better decisions regarding saving, investing, and debt management later in life.' },
+      { phrase: 'Early childhood education', vn: 'Giáo dục mầm non', sentence: 'High-quality early childhood education has been shown to have a lasting positive impact on a child\'s cognitive development and future academic success.' },
+      { phrase: 'Cross-cultural exchange programs', vn: 'Chương trình trao đổi văn hóa', sentence: 'Participating in cross-cultural exchange programs can help students develop global perspectives and a greater understanding of international issues.' }
+    ]
+  },
+  {
+    id: 'health',
+    name: 'Health',
+    icon: '🏥',
+    items: [
+      { phrase: 'Sedentary lifestyle', vn: 'Lối sống ít vận động', sentence: 'The rise of office-based work and the prevalence of digital entertainment have led many people to adopt a sedentary lifestyle, which is a major risk factor for various chronic conditions.' },
+      { phrase: 'Life expectancy', vn: 'Tuổi thọ trung bình', sentence: 'While advances in medical science have significantly increased life expectancy, the focus is now shifting towards ensuring that these extra years are spent in good health.' },
+      { phrase: 'Public health initiatives', vn: 'Các sáng kiến y tế công cộng', sentence: 'Public health initiatives, such as anti-smoking campaigns and public vaccination programs, have played a crucial role in reducing the burden of disease on society.' },
+      { phrase: 'Chronic diseases', vn: 'Bệnh mãn tính', sentence: 'The growing prevalence of chronic diseases like diabetes and heart disease requires a shift in healthcare systems from acute care towards long-term management and prevention.' },
+      { phrase: 'Preventative medicine', vn: 'Y học dự phòng', sentence: 'Investing in preventative medicine, which includes regular screenings and health education, is far more cost-effective than treating illnesses once they have reached an advanced stage.' },
+      { phrase: 'Mental well-being', vn: 'Sức khỏe tinh thần', sentence: 'In recent years, there has been a growing recognition that mental well-being is just as important as physical health, leading to increased funding for psychological services.' },
+      { phrase: 'Balanced diet', vn: 'Chế độ ăn uống cân bằng', sentence: 'Consuming a balanced diet rich in fruits, vegetables, and whole grains is essential for providing the body with the nutrients it needs to function optimally and fight off infections.' },
+      { phrase: 'Regular exercise', vn: 'Tập thể dục thường xuyên', sentence: 'Incorporating regular exercise into one\'s daily routine not only improves cardiovascular health but also has a positive impact on mental health by reducing stress and anxiety.' },
+      { phrase: 'To maintain a healthy weight', vn: 'Duy trì cân nặng hợp lý', sentence: 'While it can be challenging to maintain a healthy weight in an environment where calorie-dense foods are readily available, doing so is vital for preventing obesity-related complications.' },
+      { phrase: 'Healthcare accessibility', vn: 'Khả năng tiếp cận dịch vụ y tế', sentence: 'Improving healthcare accessibility in rural and underserved areas remains a significant challenge for many governments, often requiring the use of mobile clinics and telemedicine.' },
+      { phrase: 'Health awareness campaigns', vn: 'Chiến dịch nâng cao nhận thức sức khỏe', sentence: 'Effective health awareness campaigns use various media platforms to educate the public about the dangers of substance abuse and the benefits of a healthy lifestyle.' },
+      { phrase: 'To combat obesity', vn: 'Chống lại bệnh béo phì', sentence: 'To combat obesity effectively, policymakers must address the environmental factors that contribute to it, such as the lack of safe spaces for physical activity and the high cost of healthy food.' },
+      { phrase: 'Infectious diseases', vn: 'Bệnh truyền nhiễm', sentence: 'The emergence of new infectious diseases, as seen in recent global pandemics, highlights the need for robust international surveillance and rapid response systems.' },
+      { phrase: 'Medical advancements', vn: 'Tiến bộ y tế', sentence: 'Recent medical advancements, such as the development of mRNA vaccines and gene therapies, offer new hope for treating conditions that were previously considered incurable.' },
+      { phrase: 'To improve quality of life', vn: 'Cải thiện chất lượng cuộc sống', sentence: 'The primary goal of palliative care is to improve quality of life for patients with terminal illnesses by managing their symptoms and providing emotional support.' },
+      { phrase: 'Stress management', vn: 'Quản lý căng thẳng', sentence: 'Learning effective stress management techniques, such as mindfulness and deep breathing, is essential for maintaining both physical and mental health in a high-pressure world.' },
+      { phrase: 'Sleep deprivation', vn: 'Sự thiếu ngủ', sentence: 'Chronic sleep deprivation can lead to a host of health problems, including impaired cognitive function, a weakened immune system, and an increased risk of chronic diseases.' },
+      { phrase: 'To promote physical activity', vn: 'Thúc đẩy hoạt động thể chất', sentence: 'To promote physical activity among children, schools should incorporate more play and sports into the curriculum and provide safe areas for outdoor recreation.' },
+      { phrase: 'Substance abuse and addiction', vn: 'Lạm dụng chất và nghiện ngập', sentence: 'Addressing substance abuse and addiction requires a multifaceted approach that includes both preventative education and accessible treatment programs.' },
+      { phrase: 'Healthcare infrastructure', vn: 'Cơ sở hạ tầng y tế', sentence: 'Building a resilient healthcare infrastructure, including modern hospitals and well-trained medical staff, is essential for coping with the demands of an aging population.' },
+      { phrase: 'Holistic approach to health', vn: 'Cách tiếp cận sức khỏe toàn diện', sentence: 'A holistic approach to health considers the person as a whole, taking into account their physical, emotional, social, and spiritual needs.' },
+      { phrase: 'Nutritional deficiencies', vn: 'Thiếu hụt dinh dưỡng', sentence: 'Even in developed nations, nutritional deficiencies can occur if people rely too heavily on processed foods that are high in calories but low in essential vitamins and minerals.' },
+      { phrase: 'To address health disparities', vn: 'Giải quyết chênh lệch sức khỏe', sentence: 'To address health disparities, it is necessary to identify and remove the social and economic barriers that prevent certain groups from accessing high-quality medical care.' },
+      { phrase: 'Universal health coverage', vn: 'Bao phủ y tế toàn dân', sentence: 'Implementing universal health coverage ensures that all individuals can access the medical services they need without suffering financial hardship.' },
+      { phrase: 'Vaccination programs', vn: 'Chương trình tiêm chủng', sentence: 'The success of global vaccination programs in eradicating diseases like smallpox demonstrates the power of collective action in improving public health.' },
+      { phrase: 'Occupational health and safety', vn: 'Sức khỏe và an toàn lao động', sentence: 'Employers have a legal and moral responsibility to maintain high standards of occupational health and safety to protect their workers from accidents and work-related illnesses.' },
+      { phrase: 'Genetic predispositions', vn: 'Khuynh hướng di truyền', sentence: 'While we cannot change our genetic predispositions to certain diseases, we can often mitigate the risk through lifestyle modifications and regular medical check-ups.' },
+      { phrase: 'Aging population and healthcare', vn: 'Dân số già và chăm sóc y tế', sentence: 'The challenges posed by an aging population, such as the increased demand for long-term care, require innovative solutions in healthcare delivery and social support.' },
+      { phrase: 'To reduce the risk of illness', vn: 'Giảm nguy cơ mắc bệnh', sentence: 'Quitting smoking and reducing alcohol consumption are two of the most effective steps an individual can take to reduce the risk of illness and premature death.' },
+      { phrase: 'Mental health support', vn: 'Hỗ trợ sức khỏe tâm thần', sentence: 'Providing adequate mental health support in the workplace can lead to increased productivity and reduced absenteeism, benefiting both employees and employers.' },
+      { phrase: 'Healthy work-life balance', vn: 'Cân bằng công việc - cuộc sống lành mạnh', sentence: 'Encouraging employees to maintain a healthy work-life balance is crucial for preventing burnout and ensuring their long-term well-being and commitment to the organization.' },
+      { phrase: 'To prioritize self-care', vn: 'Ưu tiên tự chăm sóc', sentence: 'In our busy lives, it is important to prioritize self-care, which involves taking the time to rest, relax, and engage in activities that bring joy and fulfillment.' },
+      { phrase: 'Medical research and development', vn: 'Nghiên cứu và phát triển y tế', sentence: 'Continued investment in medical research and development is essential for finding new treatments and cures for the many diseases that still affect humanity.' },
+      { phrase: 'To provide emergency medical services', vn: 'Cung cấp dịch vụ y tế khẩn cấp', sentence: 'The ability of a city to provide rapid and effective emergency medical services can mean the difference between life and death for victims of accidents or sudden illnesses.' },
+      { phrase: 'Maternal and child health', vn: 'Sức khỏe bà mẹ và trẻ em', sentence: 'Improving maternal and child health is a key indicator of a nation\'s overall development, requiring access to prenatal care, skilled birth attendants, and pediatric services.' },
+      { phrase: 'Non-communicable diseases', vn: 'Bệnh không lây nhiễm', sentence: 'Non-communicable diseases, such as cancer and respiratory illnesses, are now the leading causes of death worldwide, necessitating a stronger focus on prevention and early detection.' },
+      { phrase: 'To implement health policies', vn: 'Thực thi chính sách y tế', sentence: 'To implement health policies effectively, governments must collaborate with healthcare providers, non-governmental organizations, and the general public.' },
+      { phrase: 'Digital health records', vn: 'Hồ sơ sức khỏe kỹ thuật số', sentence: 'The transition to digital health records allows for better coordination of care between different medical professionals, reducing the risk of errors and improving patient outcomes.' },
+      { phrase: 'To encourage healthy habits', vn: 'Khuyến khích thói quen lành mạnh', sentence: 'Parents play a vital role in encouraging healthy habits in their children from a young age, such as eating breakfast and being physically active every day.' },
+      { phrase: 'Healthcare spending', vn: 'Chi tiêu y tế', sentence: 'While healthcare spending continues to rise in many nations, it is important to ensure that these funds are used efficiently to provide the highest possible standard of care for all citizens.' }
+    ]
+  },
+  {
+    id: 'society',
+    name: 'Society',
+    icon: '👥',
+    items: [
+      { phrase: 'Social cohesion', vn: 'Sự gắn kết xã hội', sentence: 'Community festivals and shared public spaces are essential for fostering social cohesion in increasingly diverse urban environments.' },
+      { phrase: 'Socioeconomic disparity', vn: 'Sự chênh lệch kinh tế xã hội', sentence: 'The widening socioeconomic disparity in many developed nations has led to calls for more progressive taxation and social welfare reforms.' },
+      { phrase: 'A meritocratic society', vn: 'Xã hội trọng nhân tài', sentence: 'Education is the cornerstone of a meritocratic society, providing individuals from all backgrounds with the opportunity to succeed based on their talent and hard work.' },
+      { phrase: 'To marginalize certain groups', vn: 'Gạt bỏ các nhóm nhất định ra bên lề', sentence: 'Economic policies that focus solely on aggregate growth risk marginalizing certain groups, such as low-skilled workers or those in rural areas.' },
+      { phrase: 'Multiculturalism and integration', vn: 'Đa văn hóa và hội nhập', sentence: 'The success of multiculturalism depends on effective integration policies that encourage mutual respect while allowing immigrants to maintain their cultural identity.' },
+      { phrase: 'Social mobility', vn: 'Sự dịch chuyển xã hội', sentence: 'Equal access to high-quality education is the primary driver of social mobility, enabling children from poor families to enter high-paying professions.' },
+      { phrase: 'To bridge the wealth gap', vn: 'Rút ngắn khoảng cách giàu nghèo', sentence: 'To bridge the wealth gap, governments must look beyond income tax and consider wealth taxes on assets like real estate and inherited wealth.' },
+      { phrase: 'Civic engagement', vn: 'Sự tham gia dân sự', sentence: 'High levels of civic engagement, such as voting and volunteering, are indicators of a healthy and vibrant democracy.' },
+      { phrase: 'Social norms and values', vn: 'Chuẩn mực và giá trị xã hội', sentence: 'Rapid technological change often challenges long-held social norms and values, leading to generational gaps in perception and behavior.' },
+      { phrase: 'To foster a sense of belonging', vn: 'Nuôi dưỡng cảm giác thuộc về', sentence: 'Local sports clubs and community groups play a vital role in fostering a sense of belonging among residents, especially newcomers to an area.' },
+      { phrase: 'Urbanization and its impact', vn: 'Đô thị hóa và tác động của nó', sentence: 'While rapid urbanization offers economic opportunities, it also places a significant strain on infrastructure and can lead to social isolation for some.' },
+      { phrase: 'To promote social equality', vn: 'Thúc đẩy bình đẳng xã hội', sentence: 'Legislative measures to promote social equality must be accompanied by educational initiatives that address underlying prejudices and stereotypes.' },
+      { phrase: 'The aging population challenge', vn: 'Thách thức dân số già', sentence: 'The aging population challenge requires societies to rethink everything from retirement ages to the design of public transport and healthcare delivery.' },
+      { phrase: 'To address systemic issues', vn: 'Giải quyết các vấn đề mang tính hệ thống', sentence: 'Meaningful social change can only occur if we are willing to address systemic issues such as institutional racism and gender bias.' },
+      { phrase: 'Public discourse', vn: 'Thảo luận công khai', sentence: 'In the digital age, public discourse is often polarized by social media algorithms that prioritize controversial content over nuanced debate.' },
+      { phrase: 'Social welfare programs', vn: 'Các chương trình phúc lợi xã hội', sentence: 'Robust social welfare programs provide a crucial safety net for those who fall on hard times, preventing them from slipping into extreme poverty.' },
+      { phrase: 'Community solidarity', vn: 'Sự đoàn kết cộng đồng', sentence: 'In the aftermath of the natural disaster, the level of community solidarity was unprecedented, with neighbors providing food and shelter to those in need.' },
+      { phrase: 'To mitigate social tensions', vn: 'Giảm thiểu căng thẳng xã hội', sentence: 'Dialogue and transparent communication are essential for mitigating social tensions in regions affected by economic instability or political change.' },
+      { phrase: 'A diverse and inclusive society', vn: 'Một xã hội đa dạng và hòa nhập', sentence: 'Striving for a diverse and inclusive society is not just a moral imperative but also a practical necessity in a globalized world.' },
+      { phrase: 'To uphold human rights', vn: 'Duy trì quyền con người', sentence: 'International organizations play a key role in pressuring governments to uphold human rights and protect vulnerable populations from abuse.' },
+      { phrase: 'Social stratification', vn: 'Sự phân tầng xã hội', sentence: 'The rigid social stratification observed in some historical contexts often led to cycles of rebellion and instability.' },
+      { phrase: 'To influence public opinion', vn: 'Ảnh hưởng đến dư luận', sentence: 'Media outlets have a profound ability to influence public opinion, making journalistic integrity a cornerstone of a functioning society.' },
+      { phrase: 'To empower marginalized communities', vn: 'Trao quyền cho cộng đồng bị gạt ra bên lề', sentence: 'Micro-finance initiatives are designed to empower marginalized communities by providing them with the capital needed to start small businesses.' },
+      { phrase: 'Traditional vs modern values', vn: 'Giá trị truyền thống và hiện đại', sentence: 'The conflict between traditional and modern values is often most apparent in debates over family structure and gender roles.' },
+      { phrase: 'To promote tolerance and respect', vn: 'Thúc đẩy sự bao dung và tôn trọng', sentence: 'Education systems that promote tolerance and respect for difference are essential for maintaining peace in multicultural societies.' },
+      { phrase: 'Social responsibility', vn: 'Trách nhiệm xã hội', sentence: 'Corporate social responsibility involves companies taking accountability for their impact on the environment and the communities in which they operate.' },
+      { phrase: 'Vulnerable members of society', vn: 'Thành viên dễ bị tổn thương trong xã hội', sentence: 'A society is often judged by how it treats its most vulnerable members, such as the elderly, the disabled, and the homeless.' },
+      { phrase: 'To advocate for social change', vn: 'Vận động cho sự thay đổi xã hội', sentence: 'Grassroots movements have historically been the most effective way to advocate for social change, from civil rights to environmental protection.' },
+      { phrase: 'Social consequences', vn: 'Hệ quả xã hội', sentence: 'Policymakers must carefully consider the social consequences of their decisions, as even well-intentioned reforms can have negative side effects.' },
+      { phrase: 'To strengthen social bonds', vn: 'Thắt chặt các mối liên kết xã hội', sentence: 'Participating in shared rituals and celebrations is a powerful way to strengthen social bonds and create a sense of collective identity.' },
+      { phrase: 'Intergenerational gap', vn: 'Khoảng cách thế hệ', sentence: 'The intergenerational gap in technological literacy has created new challenges for family communication and the transfer of traditional knowledge.' },
+      { phrase: 'To erode social stability', vn: 'Xói mòn sự ổn định xã hội', sentence: 'Extreme income inequality has the potential to erode social stability by fostering resentment and a sense of injustice among the working class.' },
+      { phrase: 'Collective responsibility', vn: 'Trách nhiệm tập thể', sentence: 'Addressing climate change requires a sense of collective responsibility, as individual actions alone are insufficient to solve a global problem.' },
+      { phrase: 'To ensure social justice', vn: 'Đảm bảo công bằng xã hội', sentence: 'Social justice can only be ensured through a combination of fair laws, equal opportunities, and a commitment to protecting the rights of all citizens.' },
+      { phrase: 'Mass migration', vn: 'Di cư hàng loạt', sentence: 'Mass migration, driven by conflict or climate change, poses significant challenges for both the home countries and the host nations.' },
+      { phrase: 'To integrate into society', vn: 'Hòa nhập vào xã hội', sentence: 'Providing language classes and job training is essential for helping refugees integrate into society and become self-sufficient.' },
+      { phrase: 'Social media polarization', vn: 'Sự phân cực do mạng xã hội', sentence: 'The rise of social media polarization has made it increasingly difficult to find common ground on complex political and social issues.' },
+      { phrase: 'To combat social isolation', vn: 'Chống lại sự cô lập xã hội', sentence: 'Initiatives to combat social isolation among the elderly include community centers that offer social activities and volunteer visiting programs.' },
+      { phrase: 'Socio-cultural dynamics', vn: 'Động lực văn hóa xã hội', sentence: 'Understanding the complex socio-cultural dynamics of a region is essential for any international organization planning to implement development projects.' },
+      { phrase: 'To reflect societal values', vn: 'Phản ánh các giá trị xã hội', sentence: 'The laws of a nation should reflect societal values while also protecting the rights of minority groups who may hold different views.' }
+    ]
+  },
+  {
+    id: 'work',
+    name: 'Work',
+    icon: '💼',
+    items: [
+      { phrase: 'To climb the corporate ladder', vn: 'Leo lên nấc thang sự nghiệp', sentence: 'Many ambitious young professionals are willing to work long hours and sacrifice their personal time in an effort to climb the corporate ladder quickly.' },
+      { phrase: 'A healthy work-life balance', vn: 'Sự cân bằng công việc - cuộc sống lành mạnh', sentence: 'Maintaining a healthy work-life balance is essential for preventing burnout and ensuring long-term productivity and job satisfaction.' },
+      { phrase: 'Job security', vn: 'Sự ổn định công việc', sentence: 'In an era of rapid automation and outsourcing, job security has become a major concern for many workers in traditional manufacturing and administrative roles.' },
+      { phrase: 'To enhance productivity', vn: 'Nâng cao năng suất', sentence: 'Implementing new project management software is expected to enhance productivity by streamlining communication and reducing the time spent on administrative tasks.' },
+      { phrase: 'Flexible working arrangements', vn: 'Sắp xếp công việc linh hoạt', sentence: 'Flexible working arrangements, such as telecommuting and flexible hours, can help employees manage their family commitments while remaining productive.' },
+      { phrase: 'To foster employee engagement', vn: 'Thúc đẩy sự gắn kết của nhân viên', sentence: 'Companies that offer regular training and opportunities for career advancement are more likely to foster high levels of employee engagement.' },
+      { phrase: 'Competitive salary and benefits', vn: 'Lương và phúc lợi cạnh tranh', sentence: 'To attract and retain top talent, organizations must offer a competitive salary and benefits package that includes healthcare, retirement plans, and paid leave.' },
+      { phrase: 'Vocational training', vn: 'Đào tạo nghề', sentence: 'Investing in vocational training is crucial for addressing the skills gap in the labor market and providing young people with practical career paths.' },
+      { phrase: 'To bridge the skills gap', vn: 'Rút ngắn khoảng cách kỹ năng', sentence: 'To bridge the skills gap, universities must collaborate with industry leaders to ensure that their curricula reflect the current needs of the workforce.' },
+      { phrase: 'Professional development', vn: 'Phát triển chuyên môn', sentence: 'Continuous professional development is a requirement in many high-level professions, ensuring that practitioners stay up-to-date with the latest research and techniques.' },
+      { phrase: 'Job satisfaction', vn: 'Sự hài lòng với công việc', sentence: 'While a high salary is important, job satisfaction often stems from having meaningful work, a supportive team, and a sense of accomplishment.' },
+      { phrase: 'To promote diversity and inclusion', vn: 'Thúc đẩy đa dạng và hòa nhập', sentence: 'Organizations that actively promote diversity and inclusion are often more innovative, as they benefit from a wider range of perspectives and experiences.' },
+      { phrase: 'Workplace culture', vn: 'Văn hóa nơi làm việc', sentence: 'A positive workplace culture, characterized by mutual respect and open communication, is essential for maintaining employee morale and reducing turnover.' },
+      { phrase: 'To outsource labor', vn: 'Thuê nhân công bên ngoài', sentence: 'Many large corporations choose to outsource labor to countries with lower production costs, which can lead to job losses in their home nations.' },
+      { phrase: 'Career prospects', vn: 'Triển vọng nghề nghiệp', sentence: 'When choosing a major, students should consider the long-term career prospects in that field, as well as their own interests and talents.' },
+      { phrase: 'Structural unemployment', vn: 'Thất nghiệp cơ cấu', sentence: 'Structural unemployment occurs when there is a mismatch between the skills of the workforce and the requirements of available jobs, often due to technological change.' },
+      { phrase: 'To improve work efficiency', vn: 'Cải thiện hiệu quả công việc', sentence: 'Adopting a paperless office system is one way for businesses to improve work efficiency and reduce their environmental impact.' },
+      { phrase: 'Soft skills vs technical skills', vn: 'Kỹ năng mềm và kỹ năng kỹ thuật', sentence: 'In today\'s job market, soft skills like communication and problem-solving are often considered just as important as specialized technical skills.' },
+      { phrase: 'To reduce staff turnover', vn: 'Giảm tỷ lệ nghỉ việc của nhân viên', sentence: 'Providing a supportive work environment and competitive benefits are effective strategies to reduce staff turnover and the associated recruitment costs.' },
+      { phrase: 'Entrepreneurial spirit', vn: 'Tinh thần khởi nghiệp', sentence: 'Governments should foster an entrepreneurial spirit by providing grants and mentorship programs for small business owners and startups.' },
+      { phrase: 'The gig economy', vn: 'Nền kinh tế tự do', sentence: 'The rise of the gig economy has provided many workers with increased flexibility but has also raised concerns about the lack of benefits and job security.' },
+      { phrase: 'Labor market trends', vn: 'Xu hướng thị trường lao động', sentence: 'Understanding labor market trends is essential for policymakers who wish to address unemployment and plan for future economic growth.' },
+      { phrase: 'To encourage teamwork and collaboration', vn: 'Khuyến khích làm việc nhóm và hợp tác', sentence: 'Open-plan offices are designed to encourage teamwork and collaboration, although they can sometimes lead to increased distractions for employees.' },
+      { phrase: 'Workplace harassment and discrimination', vn: 'Quấy rối và phân biệt đối xử nơi làm việc', sentence: 'Strict policies against workplace harassment and discrimination are necessary to ensure a safe and equitable environment for all employees.' },
+      { phrase: 'To realize one\'s career ambitions', vn: 'Hiện thực hóa tham vọng sự nghiệp', sentence: 'Gaining international experience through working abroad can be a significant step for those who wish to realize their career ambitions in a global company.' },
+      { phrase: 'High-pressure work environment', vn: 'Môi trường làm việc áp lực cao', sentence: 'While some people thrive in a high-pressure work environment, others may find it detrimental to their mental and physical health.' },
+      { phrase: 'To provide mentorship', vn: 'Cung cấp sự cố vấn', sentence: 'Mentorship programs, where experienced professionals guide younger colleagues, are invaluable for knowledge transfer and professional growth.' },
+      { phrase: 'Labor laws and regulations', vn: 'Luật và quy định lao động', sentence: 'Strong labor laws and regulations are essential for protecting workers from exploitation and ensuring fair wages and safe working conditions.' },
+      { phrase: 'To streamline work processes', vn: 'Tối giản quy trình làm việc', sentence: 'By automating routine administrative tasks, a company can streamline work processes and allow employees to focus on higher-value activities.' },
+      { phrase: 'Occupational health and safety', vn: 'Sức khỏe và an toàn lao động', sentence: 'Regular audits of occupational health and safety standards are necessary to minimize the risk of accidents and work-related illnesses.' },
+      { phrase: 'Performance appraisal', vn: 'Đánh giá kết quả công việc', sentence: 'An effective performance appraisal system should provide employees with constructive feedback and clear goals for their future development.' },
+      { phrase: 'To alleviate workplace stress', vn: 'Giảm bớt căng thẳng nơi làm việc', sentence: 'Providing access to mental health resources and encouraging regular breaks are two ways for employers to help alleviate workplace stress.' },
+      { phrase: 'Telecommuting and remote work', vn: 'Làm việc từ xa', sentence: 'The sudden shift to telecommuting during the pandemic has proven that many roles can be performed effectively outside of a traditional office setting.' },
+      { phrase: 'To improve employee retention', vn: 'Cải thiện tỷ lệ giữ chân nhân viên', sentence: 'Improving employee retention is a top priority for HR departments, as losing experienced staff can be highly disruptive and costly for an organization.' },
+      { phrase: 'Technological displacement', vn: 'Sự thay thế do công nghệ', sentence: 'The fear of technological displacement is particularly acute among workers in sectors that are vulnerable to being replaced by artificial intelligence.' },
+      { phrase: 'To foster a culture of innovation', vn: 'Nuôi dưỡng văn hóa đổi mới', sentence: 'To foster a culture of innovation, management must encourage employees to take risks and experiment with new ideas without fear of failure.' },
+      { phrase: 'Workplace automation', vn: 'Tự động hóa nơi làm việc', sentence: 'Workplace automation is not just about replacing humans with robots; it also involves using software to handle data processing and other repetitive cognitive tasks.' },
+      { phrase: 'To gain practical experience', vn: 'Gặt hái kinh nghiệm thực tế', sentence: 'Internships are a valuable opportunity for students to gain practical experience in their chosen field before they enter the full-time workforce.' },
+      { phrase: 'Labor shortage', vn: 'Sự thiếu hụt lao động', sentence: 'The labor shortage in certain sectors, such as healthcare and construction, is often a result of an aging workforce and a lack of young people entering these fields.' },
+      { phrase: 'To promote professional growth', vn: 'Thúc đẩy tăng trưởng chuyên môn', sentence: 'A company that prioritizes professional growth is more likely to attract high-caliber candidates who are looking for long-term career development.' }
+    ]
+  },
+  {
+    id: 'culture',
+    name: 'Culture',
+    icon: '🎭',
+    items: [
+      { phrase: 'Cultural heritage', vn: 'Di sản văn hóa', sentence: 'The preservation of our cultural heritage, which includes both physical artifacts and intangible traditions, is essential for maintaining a sense of national identity.' },
+      { phrase: 'To erode traditional values', vn: 'Xói mòn các giá trị truyền thống', sentence: 'The rapid spread of global pop culture, while entertaining, has led to concerns that it may erode traditional values and lead to cultural homogenization.' },
+      { phrase: 'Cultural diversity', vn: 'Sự đa dạng văn hóa', sentence: 'The rich cultural diversity found in major international cities is a source of creativity and innovation, as people from different backgrounds share their unique perspectives.' },
+      { phrase: 'To assimilate into a new culture', vn: 'Hòa nhập vào một nền văn hóa mới', sentence: 'Immigrants often face the challenge of trying to assimilate into a new culture while also striving to maintain their own cultural roots and language.' },
+      { phrase: 'A deep-seated tradition', vn: 'Một truyền thống lâu đời', sentence: 'The annual harvest festival is a deep-seated tradition that has been celebrated in this region for centuries, reflecting the community\'s historical connection to the land.' },
+      { phrase: 'Cultural homogenization', vn: 'Sự đồng nhất văn hóa', sentence: 'Critics of globalization argue that it leads to cultural homogenization, where unique local traditions are replaced by a standardized, globalized way of life.' },
+      { phrase: 'To preserve local customs', vn: 'Bảo tồn các phong tục địa phương', sentence: 'Efforts to preserve local customs, such as traditional weaving or folk songs, are vital for ensuring that these unique aspects of human culture are not lost forever.' },
+      { phrase: 'Cultural stereotypes', vn: 'Định kiến văn hóa', sentence: 'Broadcasting diverse stories in the media is one of the most effective ways to challenge harmful cultural stereotypes and promote mutual understanding.' },
+      { phrase: 'Intercultural dialogue', vn: 'Đối thoại liên văn hóa', sentence: 'Promoting intercultural dialogue through exchange programs and international conferences is essential for building a more peaceful and tolerant world.' },
+      { phrase: 'To reflect cultural identity', vn: 'Phản ánh bản sắc văn hóa', sentence: 'The architecture of a city often reflects its cultural identity, blending historical styles with modern innovations to create a unique sense of place.' },
+      { phrase: 'Cultural appropriation', vn: 'Chiếm dụng văn hóa', sentence: 'The debate over cultural appropriation highlights the need for greater respect and understanding when using elements from a culture that is not one\'s own.' },
+      { phrase: 'To safeguard intangible heritage', vn: 'Bảo vệ di sản phi vật thể', sentence: 'Safeguarding intangible heritage, such as oral traditions and performing arts, requires active support for the practitioners who keep these traditions alive.' },
+      { phrase: 'Cultural shock', vn: 'Sốc văn hóa', sentence: 'Many students who study abroad experience a period of cultural shock, as they adjust to the different social norms and expectations of their host country.' },
+      { phrase: 'A melting pot of cultures', vn: 'Nơi giao thoa của các nền văn hóa', sentence: 'Historical trade centers often became a melting pot of cultures, where ideas, languages, and religions from across the globe intermingled and influenced each other.' },
+      { phrase: 'To promote cultural awareness', vn: 'Thúc đẩy nhận thức văn hóa', sentence: 'Including lessons on world religions and customs in the school curriculum is an effective way to promote cultural awareness among the younger generation.' },
+      { phrase: 'Cross-cultural communication', vn: 'Giao tiếp liên văn hóa', sentence: 'Effective cross-cultural communication is a vital skill in a globalized business world, where misunderstandings can lead to lost opportunities and damaged relationships.' },
+      { phrase: 'To uphold traditions', vn: 'Duy trì các truyền thống', sentence: 'While it is important to embrace progress, many communities still strive to uphold traditions that provide them with a sense of continuity and stability.' },
+      { phrase: 'The erosion of local languages', vn: 'Sự mai một của các ngôn ngữ địa phương', sentence: 'The erosion of local languages, often caused by the dominance of global languages like English, is a significant loss for human cultural diversity.' },
+      { phrase: 'To foster mutual understanding', vn: 'Thúc đẩy sự hiểu biết lẫn nhau', sentence: 'Cultural exchange programs for young people are an investment in a future where mutual understanding replaces prejudice and conflict.' },
+      { phrase: 'Indigenous cultures', vn: 'Văn hóa bản địa', sentence: 'Protecting the land rights of indigenous people is often the most important step in ensuring the survival of their unique indigenous cultures.' },
+      { phrase: 'To celebrate diversity', vn: 'Tôn vinh sự đa dạng', sentence: 'Public holidays that celebrate diversity, such as Harmony Day, remind us of the value of including and respecting people from all cultural backgrounds.' },
+      { phrase: 'Global cultural influence', vn: 'Ảnh hưởng văn hóa toàn cầu', sentence: 'The global cultural influence of certain nations, often through film and music, has a powerful impact on the values and aspirations of people worldwide.' },
+      { phrase: 'Traditional crafts and arts', vn: 'Thủ công và nghệ thuật truyền thống', sentence: 'Promoting traditional crafts and arts through tourism can provide local communities with a sustainable source of income while preserving their heritage.' },
+      { phrase: 'To bridge cultural gaps', vn: 'Rút ngắn khoảng cách văn hóa', sentence: 'Shared human experiences, such as birth, marriage, and death, provide a common ground that can help bridge cultural gaps even between very different societies.' },
+      { phrase: 'Cultural sensitivity', vn: 'Sự nhạy cảm về văn hóa', sentence: 'Training in cultural sensitivity is increasingly important for professionals who work with diverse populations, such as doctors, teachers, and social workers.' },
+      { phrase: 'The commercialization of culture', vn: 'Sự thương mại hóa văn hóa', sentence: 'Some argue that the commercialization of culture, where traditions are turned into tourist attractions, risks stripping them of their original meaning and significance.' },
+      { phrase: 'To respect cultural differences', vn: 'Tôn trọng sự khác biệt văn hóa', sentence: 'The foundation of a harmonious society is the willingness of all citizens to respect cultural differences while upholding shared national laws.' },
+      { phrase: 'Cultural enrichment', vn: 'Sự phong phú về văn hóa', sentence: 'Exposure to a variety of art forms and traditions leads to cultural enrichment, expanding our understanding of the world and our place within it.' },
+      { phrase: 'To maintain cultural roots', vn: 'Duy trì gốc rễ văn hóa', sentence: 'For members of the diaspora, maintaining cultural roots through language and food is a way to stay connected to their heritage and ancestors.' },
+      { phrase: 'Ancient civilizations', vn: 'Các nền văn minh cổ đại', sentence: 'The study of ancient civilizations provides valuable insights into the origins of our own laws, languages, and technologies.' },
+      { phrase: 'To document traditions', vn: 'Ghi lại các truyền thống', sentence: 'Ethnographers work to document traditions that are at risk of disappearing, ensuring that they can be studied and appreciated by future researchers.' },
+      { phrase: 'Historical significance', vn: 'Ý nghĩa lịch sử', sentence: 'Sites of great historical significance, such as Stonehenge or the Great Wall of China, must be protected from the negative impacts of mass tourism.' },
+      { phrase: 'To promote a sense of pride', vn: 'Thúc đẩy niềm tự hào', sentence: 'Celebrating national achievements in sports or science can promote a sense of pride and unity among citizens from diverse backgrounds.' },
+      { phrase: 'Cultural nuances', vn: 'Những sắc thái văn hóa', sentence: 'Translators must be aware of subtle cultural nuances, as a literal translation can sometimes miss the underlying meaning or intent of a message.' },
+      { phrase: 'Westernization', vn: 'Sự phương Tây hóa', sentence: 'The process of Westernization has brought many benefits in terms of technology and medicine, but it has also led to the decline of some traditional lifestyles.' },
+      { phrase: 'To reflect the zeitgeist', vn: 'Phản ánh tinh thần thời đại', sentence: 'Art and literature often reflect the zeitgeist of a particular era, capturing the hopes, fears, and values of the people living at that time.' },
+      { phrase: 'Folklore and mythology', vn: 'Văn học dân gian và thần thoại', sentence: 'The folklore and mythology of a culture provide a fascinating glimpse into how our ancestors made sense of the world around them.' },
+      { phrase: 'To influence architectural styles', vn: 'Ảnh hưởng đến phong cách kiến trúc', sentence: 'The migration of people throughout history has led to the blending of different influences that continue to influence architectural styles today.' },
+      { phrase: 'Cultural preservation acts', vn: 'Các đạo luật bảo tồn văn hóa', sentence: 'Strong cultural preservation acts are necessary to protect historical buildings and archaeological sites from being destroyed by urban development.' },
+      { phrase: 'To foster global citizenship', vn: 'Nuôi dưỡng quyền công dân toàn cầu', sentence: 'An education that includes a focus on world cultures can help foster global citizenship, where individuals feel a sense of responsibility for the world beyond their own borders.' }
+    ]
+  },
+  {
+    id: 'media',
+    name: 'Media',
+    icon: '📺',
+    items: [
+      { phrase: 'To shape public opinion', vn: 'Định hình dư luận', sentence: 'The media has an immense power to shape public opinion, which places a heavy responsibility on journalists to remain objective and truthful.' },
+      { phrase: 'Sensationalist journalism', vn: 'Báo chí giật gân', sentence: 'The rise of sensationalist journalism, which prioritizes shocking headlines over factual accuracy, has led to a decline in public trust in the news media.' },
+      { phrase: 'To go viral', vn: 'Trở nên phổ biến nhanh chóng', sentence: 'In the age of social media, a single video can go viral within hours, reaching millions of people and sparking global conversations on important issues.' },
+      { phrase: 'Media censorship', vn: 'Sự kiểm duyệt truyền thông', sentence: 'While some argue that media censorship is necessary to protect national security, others believe it is a violation of the fundamental right to freedom of speech.' },
+      { phrase: 'Information overload', vn: 'Quá tải thông tin', sentence: 'Constant exposure to news and social media notifications has led to information overload for many, resulting in increased stress and difficulty in focusing on complex tasks.' },
+      { phrase: 'To verify the credibility of sources', vn: 'Xác minh độ tin cậy của nguồn tin', sentence: 'With the proliferation of fake news online, it has never been more important for individuals to verify the credibility of sources before sharing information.' },
+      { phrase: 'Traditional media vs social media', vn: 'Truyền thông truyền thống và mạng xã hội', sentence: 'The shift from traditional media, like newspapers and TV, to social media has fundamentally changed how we consume information and participate in public debate.' },
+      { phrase: 'To target a specific audience', vn: 'Nhắm đến đối tượng khán giả cụ thể', sentence: 'Modern advertising uses sophisticated algorithms to target a specific audience based on their browsing history, interests, and demographic profile.' },
+      { phrase: 'Media influence on children', vn: 'Ảnh hưởng của truyền thông lên trẻ em', sentence: 'There is ongoing debate regarding the extent of media influence on children, particularly in relation to the portrayal of violence and unrealistic body images.' },
+      { phrase: 'The spread of misinformation', vn: 'Sự lan truyền thông tin sai lệch', sentence: 'Social media platforms have been criticized for their role in the spread of misinformation, which can have serious real-world consequences, such as vaccine hesitancy.' },
+      { phrase: 'To uphold journalistic integrity', vn: 'Duy trì sự liêm chính của báo chí', sentence: 'To uphold journalistic integrity, news organizations must ensure that their reporting is independent of political influence or corporate interests.' },
+      { phrase: 'Citizen journalism', vn: 'Báo chí công dân', sentence: 'The rise of citizen journalism, where ordinary people report on events using their smartphones, has provided a valuable new perspective on breaking news.' },
+      { phrase: 'Mass media outlets', vn: 'Các cơ quan truyền thông đại chúng', sentence: 'Concentrated ownership of mass media outlets by a few large corporations has raised concerns about a lack of diversity in the viewpoints being presented.' },
+      { phrase: 'To broadcast live', vn: 'Phát sóng trực tiếp', sentence: 'The ability to broadcast live from anywhere in the world has revolutionized news reporting, allowing for real-time coverage of major events as they unfold.' },
+      { phrase: 'Social media algorithms', vn: 'Thuật toán mạng xã hội', sentence: 'Social media algorithms are designed to keep users engaged by showing them content that aligns with their interests, often creating echo chambers.' },
+      { phrase: 'To manipulate data', vn: 'Thao túng dữ liệu', sentence: 'The use of AI to manipulate data and create deepfake videos poses a significant threat to the credibility of visual evidence in the digital age.' },
+      { phrase: 'Digital advertising', vn: 'Quảng cáo kỹ thuật số', sentence: 'Digital advertising has surpassed traditional forms of marketing, as it allows brands to measure their return on investment with a high degree of precision.' },
+      { phrase: 'To provide unbiased coverage', vn: 'Cung cấp thông tin không thiên kiến', sentence: 'Publicly funded broadcasters are often mandated to provide unbiased coverage of political events to ensure a well-informed electorate.' },
+      { phrase: 'The erosion of privacy', vn: 'Sự xói mòn quyền riêng tư', sentence: 'The widespread collection of personal data by tech companies for advertising purposes has led to growing concerns about the erosion of privacy in the digital era.' },
+      { phrase: 'To promote a brand', vn: 'Quảng bá một thương hiệu', sentence: 'Influencer marketing has become a powerful tool for companies to promote a brand to a younger, tech-savvy audience through trusted voices.' },
+      { phrase: 'Information literacy', vn: 'Kỹ năng hiểu biết thông tin', sentence: 'Teaching information literacy in schools is essential for helping students develop the skills they need to navigate the complex modern media landscape.' },
+      { phrase: 'To debunk myths', vn: 'Bác bỏ các lầm tưởng', sentence: 'Fact-checking organizations play a crucial role in the digital age by working to debunk myths and clarify the truth behind viral rumors.' },
+      { phrase: 'Mainstream media', vn: 'Truyền thông chính thống', sentence: 'While mainstream media still holds considerable influence, many people are turning to independent podcasts and blogs for more niche or alternative viewpoints.' },
+      { phrase: 'To launch a campaign', vn: 'Phát động một chiến dịch', sentence: 'Non-profit organizations often use social media to launch a campaign and raise awareness for social or environmental causes with minimal costs.' },
+      { phrase: 'Media literacy skills', vn: 'Kỹ năng hiểu biết truyền thông', sentence: 'Possessing strong media literacy skills enables individuals to critically analyze the messages they receive and understand the motivations behind them.' },
+      { phrase: 'To generate clicks', vn: 'Tạo ra lượt nhấp chuột', sentence: 'The pressure to generate clicks and advertising revenue can sometimes lead news sites to prioritize sensationalism over quality reporting.' },
+      { phrase: 'Real-time updates', vn: 'Cập nhật thời gian thực', sentence: 'Many people now rely on social media platforms for real-time updates during natural disasters or major political events.' },
+      { phrase: 'To engage with users', vn: 'Tương tác với người dùng', sentence: 'Interactive content, such as polls and live Q&A sessions, allows brands to engage with users in a way that was never possible with traditional advertising.' },
+      { phrase: 'Freedom of the press', vn: 'Tự do báo chí', sentence: 'A free and independent media is essential for a functioning democracy, as it serves as a watchdog to hold those in power accountable.' },
+      { phrase: 'To portray an image', vn: 'Khắc họa một hình ảnh', sentence: 'Celebrities often use social media to carefully portray an image that aligns with their personal brand and professional goals.' },
+      { phrase: 'Investigative journalism', vn: 'Báo chí điều tra', sentence: 'Investigative journalism requires a significant investment of time and resources, but it is vital for uncovering corruption and social injustices.' },
+      { phrase: 'To raise awareness', vn: 'Nâng cao nhận thức', sentence: 'Documentaries can be a powerful medium for raising awareness about complex issues such as human rights abuses or environmental destruction.' },
+      { phrase: 'Subscription-based models', vn: 'Mô hình dựa trên thuê bao', sentence: 'Many news organizations are shifting towards subscription-based models to reduce their reliance on advertising revenue and support quality journalism.' },
+      { phrase: 'To dominate the headlines', vn: 'Chiếm lĩnh các tiêu đề báo', sentence: 'Major international events, such as the Olympic Games or global summits, tend to dominate the headlines for weeks at a time.' },
+      { phrase: 'The digitalization of media', vn: 'Sự số hóa truyền thông', sentence: 'The digitalization of media has led to the decline of print newspapers and the rise of online portals that offer multimedia content.' },
+      { phrase: 'To reach a global audience', vn: 'Tiếp cận khán giả toàn cầu', sentence: 'The internet has made it possible for even small-scale creators to reach a global audience with their music, art, or writing.' },
+      { phrase: 'User-generated content', vn: 'Nội dung do người dùng tạo ra', sentence: 'Platforms that rely on user-generated content, such as YouTube and TikTok, have democratized the creative process but also created new challenges for moderation.' },
+      { phrase: 'To provide a platform for', vn: 'Cung cấp một nền tảng cho', sentence: 'Social media can provide a platform for marginalized voices to be heard, although it can also be used to spread hate speech and harassment.' },
+      { phrase: 'Information gatekeepers', vn: 'Những người gác cổng thông tin', sentence: 'In the past, traditional editors acted as information gatekeepers, deciding which stories were important enough to reach the public.' },
+      { phrase: 'To foster public debate', vn: 'Thúc đẩy tranh luận công khai', sentence: 'Opinion pieces in reputable newspapers serve to foster public debate by providing a platform for diverse and well-reasoned arguments on controversial issues.' }
+    ]
+  }
+];
+---
+
+<BaseLayout title="IELTS Topic Collocations & Phrases | Band 8-9 Library" description="Comprehensive list of 320+ Band 8-9 collocations across 8 core IELTS topics with complex sample sentences.">
+  <div class="collo-wrap">
+    <!-- Header -->
+    <header class="collo-header">
+      <div class="header-tag">IELTS Writing & Speaking Library</div>
+      <h1 class="header-title">Topic Collocations & <em>Complex Structures</em></h1>
+      <p class="header-desc">A curated collection of 320+ high-level phrases across 8 core topics, specifically designed for Band 8-9 candidates.</p>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="topic-nav" id="topic-nav">
+      <div class="nav-container">
+        {topics.map(topic => (
+          <a href={`#${topic.id}`} class="nav-link">
+            <span class="nav-icon">{topic.icon}</span>
+            <span class="nav-text">{topic.name}</span>
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <!-- Content Sections -->
+    <main class="collo-main">
+      {topics.map(topic => (
+        <section id={topic.id} class="topic-section">
+          <div class="section-head">
+            <span class="section-icon">{topic.icon}</span>
+            <h2 class="section-title">{topic.name}</h2>
+            <div class="item-count">{topic.items.length} Phrases</div>
+          </div>
+          
+          <div class="items-grid">
+            {topic.items.map((item, index) => (
+              <div class="collo-item">
+                <div class="item-top">
+                  <span class="item-num">{(index + 1).toString().padStart(2, '0')}</span>
+                  <h3 class="item-phrase">{item.phrase}</h3>
+                </div>
+                <div class="item-vn">{item.vn}</div>
+                <div class="item-sentence">
+                  <span class="sentence-label">Sample (Band 8-9):</span>
+                  <p class="sentence-text">{item.sentence}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+
+    <!-- Footer -->
+    <footer class="collo-footer">
+      <p>&copy; 2026 Speak Native IELTS System. Optimized for academic precision.</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  :root {
+    --cream: #f8f4ee;
+    --paper: #ffffff;
+    --ink: #1a1714;
+    --ink-soft: #4a4540;
+    --ink-muted: #8a837a;
+    --rule: #e2ddd8;
+    --accent: #c8401a;
+    --accent2: #2a5c8a;
+    --struct-bg: #f1f5f9;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Be Vietnam Pro', system-ui, sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  .collo-wrap {
+    background: var(--cream);
+    min-height: 100vh;
+    color: var(--ink);
+    padding-bottom: 5rem;
+  }
+
+  /* Header */
+  .collo-header {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 4rem;
+    text-align: center;
+  }
+  .header-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .header-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.1;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  .header-title em { font-style: italic; color: var(--accent2); }
+  .header-desc {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* Topic Nav */
+  .topic-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(248, 244, 238, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.75rem 0;
+  }
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0 1rem;
+    scrollbar-width: none;
+  }
+  .nav-container::-webkit-scrollbar { display: none; }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .nav-link:hover {
+    background: var(--paper);
+    border-color: var(--rule);
+    color: var(--ink);
+  }
+  .nav-icon { font-size: 1rem; }
+
+  /* Main Sections */
+  .collo-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+  .topic-section {
+    margin-bottom: 6rem;
+    scroll-margin-top: 100px;
+  }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-icon { font-size: 2rem; }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 600;
+    flex: 1;
+  }
+  .item-count {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    background: var(--paper);
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--rule);
+  }
+
+  /* Items Grid */
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+  }
+  .collo-item {
+    background: var(--paper);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--rule);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .collo-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+  .item-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .item-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    font-weight: 700;
+    padding-top: 0.2rem;
+  }
+  .item-phrase {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .item-vn {
+    font-size: 0.9rem;
+    color: var(--accent2);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .item-sentence {
+    margin-top: auto;
+    background: var(--struct-bg);
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  .sentence-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-muted);
+    margin-bottom: 0.5rem;
+  }
+  .sentence-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* Footer */
+  .collo-footer {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 768px) {
+    .items-grid { grid-template-columns: 1fr; }
+    .collo-header { padding-top: 4rem; }
+    .topic-nav { padding: 0.5rem 0; }
+  }
+</style>
