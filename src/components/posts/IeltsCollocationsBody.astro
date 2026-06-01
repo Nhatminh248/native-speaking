@@ -1,6 +1,4 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-
 const topics = [
   {
     id: 'technology',
@@ -381,276 +379,288 @@ const topics = [
 ];
 ---
 
-<BaseLayout title="IELTS Topic Collocations & Phrases | Band 8-9 Library" description="Comprehensive list of 320+ Band 8-9 collocations across 8 core IELTS topics with complex sample sentences.">
-  <div class="collo-wrap">
-    <!-- Header -->
-    <header class="collo-header">
-      <div class="header-tag">IELTS Writing & Speaking Library</div>
-      <h1 class="header-title">Topic Collocations & <em>Complex Structures</em></h1>
-      <p class="header-desc">A curated collection of 320+ high-level phrases across 8 core topics, specifically designed for Band 8-9 candidates.</p>
-    </header>
+<div class="collo-body">
+    <!-- Header Card -->
+    <div class="collo-header-card">
+        <div class="header-tag">IELTS Writing & Speaking Library</div>
+        <h1 class="header-title">Topic Collocations & <em>Complex Structures</em></h1>
+        <p class="header-desc">A curated collection of 320+ high-level phrases across 8 core topics, specifically designed for Band 8-9 candidates.</p>
+    </div>
 
     <!-- Sticky Navigation -->
-    <nav class="topic-nav" id="topic-nav">
-      <div class="nav-container">
-        {topics.map(topic => (
-          <a href={`#${topic.id}`} class="nav-link">
-            <span class="nav-icon">{topic.icon}</span>
-            <span class="nav-text">{topic.name}</span>
-          </a>
-        ))}
-      </div>
+    <nav class="topic-nav">
+        <div class="nav-container">
+            {topics.map(topic => (
+                <a href={`#${topic.id}`} class="nav-link">
+                    <span class="nav-icon">{topic.icon}</span>
+                    <span class="nav-text">{topic.name}</span>
+                </a>
+            ))}
+        </div>
     </nav>
 
     <!-- Content Sections -->
-    <main class="collo-main">
-      {topics.map(topic => (
-        <section id={topic.id} class="topic-section">
-          <div class="section-head">
-            <span class="section-icon">{topic.icon}</span>
-            <h2 class="section-title">{topic.name}</h2>
-            <div class="item-count">{topic.items.length} Phrases</div>
-          </div>
-          
-          <div class="items-grid">
-            {topic.items.map((item, index) => (
-              <div class="collo-item">
-                <div class="item-top">
-                  <span class="item-num">{(index + 1).toString().padStart(2, '0')}</span>
-                  <h3 class="item-phrase">{item.phrase}</h3>
+    <div class="collo-content">
+        {topics.map(topic => (
+            <section id={topic.id} class="topic-section">
+                <div class="section-head">
+                    <span class="section-icon">{topic.icon}</span>
+                    <h2 class="section-title">{topic.name}</h2>
+                    <div class="item-count">{topic.items.length} Phrases</div>
                 </div>
-                <div class="item-vn">{item.vn}</div>
-                <div class="item-sentence">
-                  <span class="sentence-label">Sample (Band 8-9):</span>
-                  <p class="sentence-text">{item.sentence}</p>
+                
+                <div class="items-grid">
+                    {topic.items.map((item, index) => (
+                        <div class="collo-item">
+                            <div class="item-top">
+                                <span class="item-num">{(index + 1).toString().padStart(2, '0')}</span>
+                                <h3 class="item-phrase">{item.phrase}</h3>
+                            </div>
+                            <div class="item-vn">{item.vn}</div>
+                            <div class="item-sentence">
+                                <span class="sentence-label">Sample (Band 8-9):</span>
+                                <p class="sentence-text">{item.sentence}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      ))}
-    </main>
-
-    <!-- Footer -->
-    <footer class="collo-footer">
-      <p>&copy; 2026 Speak Native IELTS System. Optimized for academic precision.</p>
-    </footer>
-  </div>
-</BaseLayout>
+            </section>
+        ))}
+    </div>
+</div>
 
 <style>
-  :root {
-    --cream: #f8f4ee;
-    --paper: #ffffff;
-    --ink: #1a1714;
-    --ink-soft: #4a4540;
-    --ink-muted: #8a837a;
-    --rule: #e2ddd8;
-    --accent: #c8401a;
-    --accent2: #2a5c8a;
-    --struct-bg: #f1f5f9;
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Be Vietnam Pro', system-ui, sans-serif;
-    --font-mono: 'DM Mono', monospace;
-  }
+    .collo-body {
+        --cream: #f8f4ee;
+        --paper: #ffffff;
+        --ink: #1a1714;
+        --ink-soft: #4a4540;
+        --ink-muted: #8a837a;
+        --rule: #e2ddd8;
+        --accent: #c8401a;
+        --accent2: #2a5c8a;
+        --struct-bg: #f1f5f9;
+        --font-display: 'Playfair Display', serif;
+        --font-body: 'Be Vietnam Pro', system-ui, sans-serif;
+        --font-mono: 'DM Mono', monospace;
 
-  .collo-wrap {
-    background: var(--cream);
-    min-height: 100vh;
-    color: var(--ink);
-    padding-bottom: 5rem;
-  }
+        color: var(--ink);
+    }
 
-  /* Header */
-  .collo-header {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 6rem 1.5rem 4rem;
-    text-align: center;
-  }
-  .header-tag {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    font-weight: 600;
-  }
-  .header-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    line-height: 1.1;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-  }
-  .header-title em { font-style: italic; color: var(--accent2); }
-  .header-desc {
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
+    .collo-header-card {
+        background: var(--ink);
+        color: var(--cream);
+        padding: 4rem 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
 
-  /* Topic Nav */
-  .topic-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(248, 244, 238, 0.95);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    padding: 0.75rem 0;
-  }
-  .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    overflow-x: auto;
-    padding: 0 1rem;
-    scrollbar-width: none;
-  }
-  .nav-container::-webkit-scrollbar { display: none; }
-  .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.5rem 1rem;
-    border-radius: 100px;
-    text-decoration: none;
-    color: var(--ink-soft);
-    font-size: 0.85rem;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: all 0.2s;
-    border: 1px solid transparent;
-  }
-  .nav-link:hover {
-    background: var(--paper);
-    border-color: var(--rule);
-    color: var(--ink);
-  }
-  .nav-icon { font-size: 1rem; }
+    .collo-header-card::before {
+        content: '';
+        position: absolute;
+        top: -20%;
+        right: -10%;
+        width: 60vw;
+        height: 60vw;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(200,64,26,0.15) 0%, transparent 70%);
+        pointer-events: none;
+    }
 
-  /* Main Sections */
-  .collo-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 1.5rem;
-  }
-  .topic-section {
-    margin-bottom: 6rem;
-    scroll-margin-top: 100px;
-  }
-  .section-head {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--ink);
-  }
-  .section-icon { font-size: 2rem; }
-  .section-title {
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    font-weight: 600;
-    flex: 1;
-  }
-  .item-count {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--ink-muted);
-    background: var(--paper);
-    padding: 4px 12px;
-    border-radius: 100px;
-    border: 1px solid var(--rule);
-  }
+    .header-tag {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
 
-  /* Items Grid */
-  .items-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 1.5rem;
-  }
-  .collo-item {
-    background: var(--paper);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid var(--rule);
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-  }
-  .collo-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  }
-  .item-top {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
-  }
-  .item-num {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    font-weight: 700;
-    padding-top: 0.2rem;
-  }
-  .item-phrase {
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.3;
-    color: var(--ink);
-  }
-  .item-vn {
-    font-size: 0.9rem;
-    color: var(--accent2);
-    font-weight: 600;
-    margin-bottom: 1rem;
-    font-style: italic;
-  }
-  .item-sentence {
-    margin-top: auto;
-    background: var(--struct-bg);
-    padding: 1rem;
-    border-radius: 8px;
-  }
-  .sentence-label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--ink-muted);
-    margin-bottom: 0.5rem;
-  }
-  .sentence-text {
-    font-size: 0.88rem;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    margin: 0;
-  }
+    .header-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        line-height: 1.1;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
 
-  /* Footer */
-  .collo-footer {
-    text-align: center;
-    padding: 4rem 1.5rem;
-    border-top: 1px solid var(--rule);
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--ink-muted);
-  }
+    .header-title em { font-style: italic; color: var(--accent); }
 
-  @media (max-width: 768px) {
-    .items-grid { grid-template-columns: 1fr; }
-    .collo-header { padding-top: 4rem; }
-    .topic-nav { padding: 0.5rem 0; }
-  }
+    .header-desc {
+        max-width: 600px;
+        margin: 0 auto;
+        font-size: 1rem;
+        color: rgba(245,240,232,0.7);
+        line-height: 1.6;
+        font-weight: 300;
+    }
+
+    /* Topic Nav */
+    .topic-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(248, 244, 238, 0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        padding: 0.75rem 0;
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        overflow-x: auto;
+        padding: 0 1rem;
+        scrollbar-width: none;
+    }
+
+    .nav-container::-webkit-scrollbar { display: none; }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.5rem 1rem;
+        border-radius: 100px;
+        text-decoration: none;
+        color: var(--ink-soft);
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: all 0.2s;
+        border: 1px solid transparent;
+        font-family: var(--font-body);
+    }
+
+    .nav-link:hover {
+        background: var(--paper);
+        border-color: var(--rule);
+        color: var(--ink);
+    }
+
+    /* Content */
+    .collo-content {
+        padding: 3rem 0;
+    }
+
+    .topic-section {
+        margin-bottom: 5rem;
+        scroll-margin-top: 100px;
+    }
+
+    .section-head {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--ink);
+    }
+
+    .section-icon { font-size: 1.5rem; }
+
+    .section-title {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        font-weight: 600;
+        flex: 1;
+    }
+
+    .item-count {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--ink-muted);
+        background: var(--paper);
+        padding: 4px 12px;
+        border-radius: 100px;
+        border: 1px solid var(--rule);
+    }
+
+    /* Grid */
+    .items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .collo-item {
+        background: var(--paper);
+        padding: 1.5rem;
+        border-radius: 0;
+        border: 1px solid var(--ink);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s;
+    }
+
+    .collo-item:hover {
+        transform: translateY(-2px);
+    }
+
+    .item-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .item-num {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: var(--accent);
+        font-weight: 700;
+        padding-top: 0.2rem;
+    }
+
+    .item-phrase {
+        font-size: 1.1rem;
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--ink);
+    }
+
+    .item-vn {
+        font-size: 0.85rem;
+        color: var(--accent2);
+        font-weight: 600;
+        margin-bottom: 1rem;
+        font-style: italic;
+    }
+
+    .item-sentence {
+        margin-top: auto;
+        background: var(--struct-bg);
+        padding: 1rem;
+        border: 1px solid var(--rule);
+    }
+
+    .sentence-label {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-muted);
+        margin-bottom: 0.5rem;
+    }
+
+    .sentence-text {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: var(--ink-soft);
+        margin: 0;
+        font-weight: 300;
+    }
+
+    @media (max-width: 768px) {
+        .items-grid { grid-template-columns: 1fr; }
+        .collo-header-card { padding: 3rem 1.5rem; }
+    }
 </style>
