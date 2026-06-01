@@ -11,6 +11,9 @@ import IeltsWritingTwoPartAnalysisBody from '../../components/posts/IeltsWriting
 import IeltsCollocationsBody from '../../components/posts/IeltsCollocationsBody.astro';
 import IeltsTask1LineGraphBody from '../../components/posts/IeltsTask1LineGraphBody.astro';
 import IeltsTask1BarChartBody from '../../components/posts/IeltsTask1BarChartBody.astro';
+import IeltsTask1PieChartBody from '../../components/posts/IeltsTask1PieChartBody.astro';
+import IeltsTask1TableBody from '../../components/posts/IeltsTask1TableBody.astro';
+import IeltsTask1MixedChartBody from '../../components/posts/IeltsTask1MixedChartBody.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -47,6 +50,12 @@ const { Content } = await post.render();
     ? <IeltsTask1LineGraphBody />
     : post.slug === 'ielts-writing-task1-bar-chart'
     ? <IeltsTask1BarChartBody />
+    : post.slug === 'ielts-writing-task1-pie-chart'
+    ? <IeltsTask1PieChartBody />
+    : post.slug === 'ielts-writing-task1-table'
+    ? <IeltsTask1TableBody />
+    : post.slug === 'ielts-writing-task1-mixed-chart'
+    ? <IeltsTask1MixedChartBody />
     : <div class="prose"><Content /></div>
   }
 </BaseLayout>
