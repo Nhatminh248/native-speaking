@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <title>Two-Part Question Essay Analysis - IELTS Writing Task 2</title>
+    <style>
+        :root {
+          --cream:      #f8f4ee;
+          --paper:      #ffffff;
+          --ink:        #1a1714;
+          --ink-soft:   #4a4540;
+          --ink-muted:  #8a837a;
+          --rule:       #e2ddd8;
+          --struct-bg:  #f1f5f9;
+          --font-display: 'Fraunces', Georgia, serif;
+          --font-body:    'Plus Jakarta Sans', system-ui, sans-serif;
+          --font-mono:    'JetBrains Mono', monospace;
+
+          /* Color set for Two-Part Question */
+          --intro-bg: #fafafa; --intro-border: #44403c; --intro-text: #1c1917;
+          --b1-bg: #f0fdfa; --b1-border: #0d9488; --b1-text: #134e4a;   /* Question 1 — Teal */
+          --b2-bg: #fff1f2; --b2-border: #e11d48; --b2-text: #881337;   /* Question 2 — Rose */
+          --conc-bg: #eff6ff; --conc-border: #2563eb; --conc-text: #1e3a8a;
+        }
+        body { font-family: var(--font-body); background: var(--cream); color: var(--ink); line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; margin: 0; }
+        .page-wrap { max-width: 780px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+        .article-meta { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+        .badge { display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; border: 1px solid currentColor; }
+        .article-title { font-family: var(--font-display); font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 600; line-height: 1.2; color: var(--ink); margin-bottom: .4rem; }
+        .article-title em { font-style: italic; }
+        .article-subtitle { font-size: .95rem; color: var(--ink-muted); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); }
+
+        .section-heading { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--ink); margin: 2.5rem 0 1rem; display: flex; align-items: center; gap: .5rem; }
+        .section-heading::after { content: ''; flex: 1; height: 1px; background: var(--rule); margin-left: .5rem; }
+        .section-number { font-family: var(--font-mono); font-size: .75rem; font-weight: 500; color: var(--ink-muted); background: var(--struct-bg); padding: 2px 7px; border-radius: 4px; }
+
+        .prompt-box { background: var(--paper); border: 1px solid var(--rule); border-left: 4px solid var(--ink); border-radius: 0 8px 8px 0; padding: 1.1rem 1.25rem; margin-bottom: 1.75rem; }
+        .prompt-label { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: .4rem; }
+        .prompt-text { font-size: .9rem; color: var(--ink-soft); line-height: 1.7; }
+        .prompt-text strong { color: var(--ink); font-weight: 600; }
+
+        .legend { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; padding: .8rem 1rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; margin-bottom: 1.25rem; }
+        .legend-label { font-size: .7rem; font-weight: 600; color: var(--ink-muted); letter-spacing: .06em; text-transform: uppercase; align-self: center; }
+        .legend-item { display: flex; align-items: center; gap: .35rem; font-size: .78rem; color: var(--ink-soft); }
+        .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+        .para-block { border-radius: 0 10px 10px 0; padding: 1.1rem 1.25rem; margin-bottom: .9rem; border-left: 4px solid; }
+        .para-label { font-size: .68rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; margin-bottom: .6rem; display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+        .para-tag { font-size: .65rem; padding: 1px 7px; border-radius: 100px; border: 1px solid currentColor; letter-spacing: .04em; font-weight: 600; text-transform: uppercase; }
+        .para-text { font-size: .92rem; line-height: 1.95; color: var(--ink); }
+        
+        /* Highlighting Logic */
+        .intro { background: var(--intro-bg); border-color: var(--intro-border); color: var(--intro-text); }
+        .intro .hl-vocab { border-bottom: 2px solid var(--intro-border); font-weight: 600; }
+        .intro .hl-tech { border-bottom: 2px dashed var(--intro-border); font-style: italic; opacity: .9; }
+
+        .b1 { background: var(--b1-bg); border-color: var(--b1-border); color: var(--b1-text); }
+        .b1 .hl-vocab { border-bottom: 2px solid var(--b1-border); font-weight: 600; }
+        .b1 .hl-tech { border-bottom: 2px dashed var(--b1-border); font-style: italic; opacity: .9; }
+
+        .b2 { background: var(--b2-bg); border-color: var(--b2-border); color: var(--b2-text); }
+        .b2 .hl-vocab { border-bottom: 2px solid var(--b2-border); font-weight: 600; }
+        .b2 .hl-tech { border-bottom: 2px dashed var(--b2-border); font-style: italic; opacity: .9; }
+
+        .conc { background: var(--conc-bg); border-color: var(--conc-border); color: var(--conc-text); }
+        .conc .hl-vocab { border-bottom: 2px solid var(--conc-border); font-weight: 600; }
+        .conc .hl-tech { border-bottom: 2px dashed var(--conc-border); font-style: italic; opacity: .9; }
+
+        .para-note { margin-top: .75rem; padding: .6rem .85rem; background: rgba(255,255,255,.7); border-radius: 6px; font-size: .78rem; color: var(--ink-soft); line-height: 1.6; }
+        .para-note strong { font-weight: 600; color: var(--ink); }
+
+        .word-count { display: inline-flex; font-family: var(--font-mono); font-size: .75rem; color: var(--ink-muted); background: var(--paper); border: 1px solid var(--rule); border-radius: 100px; padding: 3px 12px; margin-top: .4rem; }
+        
+        .card { background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 1rem; }
+        .card-title { font-size: .85rem; font-weight: 600; color: var(--ink); margin-bottom: .9rem; padding-bottom: .65rem; border-bottom: 1px solid var(--rule); }
+
+        .struct-list { display: flex; flex-direction: column; gap: .6rem; }
+        .struct-item { background: var(--struct-bg); border-radius: 8px; padding: .7rem .9rem; }
+        .struct-num { font-family: var(--font-mono); font-size: .65rem; font-weight: 500; color: var(--ink-muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .3rem; }
+        .struct-label { font-size: .8rem; font-weight: 600; color: var(--ink); margin-bottom: .3rem; }
+        .struct-example { font-family: var(--font-mono); font-size: .78rem; color: var(--ink-soft); line-height: 1.65; margin-bottom: .3rem; }
+        .struct-example em { font-style: normal; font-weight: 600; }
+        .struct-note { font-size: .75rem; color: var(--ink-muted); line-height: 1.5; }
+
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .6rem; }
+        .vocab-chip { background: var(--cream); border: 1px solid var(--rule); border-radius: 8px; padding: .6rem .85rem; }
+        .vocab-en { font-size: .82rem; font-weight: 600; color: var(--ink); font-family: var(--font-mono); }
+        .vocab-vn { font-size: .75rem; color: var(--ink-muted); margin-top: 2px; }
+
+        .paraphrase-box { background: var(--cream); border: 1px solid var(--rule); border-radius: 8px; padding: .8rem 1rem; margin-top: .75rem; font-size: .8rem; color: var(--ink-soft); line-height: 1.8; }
+        .paraphrase-box strong { font-weight: 600; color: var(--ink); font-family: var(--font-mono); font-size: .78rem; }
+
+        .scorecard { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: .7rem; margin-top: .75rem; }
+        .score-cell { background: var(--cream); border: 1px solid var(--rule); border-radius: 8px; padding: .7rem .9rem; }
+        .score-criterion { font-size: .7rem; font-weight: 600; color: var(--ink-muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .25rem; }
+        .score-note { font-size: .78rem; color: var(--ink-soft); line-height: 1.5; }
+
+        .tips-list { display: flex; flex-direction: column; }
+        .tip-item { display: flex; gap: .75rem; padding: .7rem 0; border-bottom: 1px solid var(--rule); }
+        .tip-item:last-child { border-bottom: none; }
+        .tip-num { font-family: var(--font-mono); font-size: .78rem; font-weight: 600; flex-shrink: 0; padding-top: 2px; min-width: 1.4rem; }
+        .tip-text { font-size: .85rem; color: var(--ink); line-height: 1.7; }
+        .tip-text strong { font-weight: 600; }
+        .tip-text em { font-family: var(--font-mono); font-style: normal; font-size: .8rem; color: var(--ink-soft); }
+
+        .watchout { border-radius: 8px; padding: .8rem 1rem; font-size: .82rem; line-height: 1.65; margin-top: .75rem; border: 1px solid; }
+        .watchout strong { font-weight: 600; }
+
+        .article-footer { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); font-size: .78rem; color: var(--ink-muted); line-height: 1.6; }
+        
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        .diff-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem; }
+        .diff-title { font-weight: 600; font-size: .85rem; margin-bottom: .5rem; display: flex; align-items: center; gap: .4rem; }
+        .diff-text { font-size: .8rem; color: var(--ink-soft); line-height: 1.5; }
+
+        @media (max-width: 600px) { 
+            .vocab-grid { grid-template-columns: 1fr 1fr; } 
+            .scorecard { grid-template-columns: 1fr 1fr; } 
+            .diff-grid { grid-template-columns: 1fr; }
+        }
+        @media print { 
+            body { background: white; font-size: 13px; } 
+            .page-wrap { max-width: 100%; padding: 0; } 
+            .card, .para-block { break-inside: avoid; } 
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <div class="article-meta">
+            <span class="badge" style="color: #0d9488;">IELTS Writing Task 2</span>
+            <span class="badge" style="color: #e11d48;">Two-Part Question</span>
+            <span class="badge" style="color: #2563eb;">Band 9.0</span>
+        </div>
+        <h1 class="article-title">Phân tích bài mẫu: <em>Money & Happiness</em></h1>
+        <p class="article-subtitle">Chinh phục dạng bài Two-Part Question (Direct Question) với sự cân bằng tuyệt đối giữa các ý hỏi.</p>
+
+        <div class="section-heading">
+            <span class="section-number">00</span> Phân biệt nhanh dạng bài
+        </div>
+        <div class="diff-grid">
+            <div class="diff-card" style="border-top: 3px solid #0d9488;">
+                <div class="diff-title">Two-Part / Direct</div>
+                <div class="diff-text">Đề bài đưa ra 2 câu hỏi trực tiếp. Bạn phải trả lời <strong>cả hai</strong> một cách rõ ràng và cân bằng. <br><em>"Do you think...? What other factors...?"</em></div>
+            </div>
+            <div class="diff-card" style="border-top: 3px solid #8a837a;">
+                <div class="diff-title">Opinion / Agree-Disagree</div>
+                <div class="diff-text">Đề bài đưa ra 1 quan điểm và hỏi bạn đồng ý hay không. Bạn chỉ tập trung chứng minh <strong>một phía</strong> hoặc sự cân bằng.</div>
+            </div>
+        </div>
+
+        <div class="section-heading">
+            <span class="section-number">01</span> Đề bài (Prompt)
+        </div>
+        <div class="prompt-box">
+            <div class="prompt-label">The Topic</div>
+            <div class="prompt-text">
+                Some people think that money is one of the most essential factors in promoting happiness. <strong>Do you think people can be happy without much money? What other factors contribute towards happiness?</strong>
+            </div>
+        </div>
+
+        <div class="section-heading">
+            <span class="section-number">02</span> Bài mẫu có chú thích
+        </div>
+        <div class="legend">
+            <div class="legend-label">Ghi chú:</div>
+            <div class="legend-item"><div class="legend-dot" style="background: currentColor; border-bottom: 2px solid;"></div> Vocab nổi bật</div>
+            <div class="legend-item"><div class="legend-dot" style="background: currentColor; border-bottom: 2px dashed;"></div> Kỹ thuật / Cấu trúc</div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="para-block intro">
+            <div class="para-label">
+                <span class="para-tag">Introduction</span>
+            </div>
+            <div class="para-text">
+                Money is considered by many people to be one of the <span class="hl-vocab">most essential factors</span> <span class="hl-tech">promoting happiness</span>. In my opinion, it is <span class="hl-vocab">entirely possible</span> for people to be happy even if they have <span class="hl-vocab">modest financial means</span>, and other aspects of life can play a <span class="hl-tech">more vital role in fostering contentment</span> than wealth alone.
+            </div>
+            <div class="para-note">
+                <strong>Ghi chú:</strong> Mở bài trả lời trực tiếp cả hai câu hỏi: (1) Có thể hạnh phúc mà không cần tiền, (2) Có những yếu tố khác quan trọng hơn. Dùng <em>"fostering contentment"</em> để paraphrase cho <em>"promoting happiness"</em>.
+            </div>
+        </div>
+
+        <!-- Body 1 -->
+        <div class="para-block b1">
+            <div class="para-label">
+                <span class="para-tag">Body Paragraph 1: Happiness without Money</span>
+            </div>
+            <div class="para-text">
+                Although money allows people to afford luxuries and treats, which certainly do bring <span class="hl-vocab">temporary enjoyment</span>, a substantial number of people are happy without it. <span class="hl-tech">Firstly, money is no guarantee of happiness</span>, particularly if disease or disaster feature largely in someone’s life. Secondly, <span class="hl-tech">as long as people have the resources to cover their basic necessities</span>, doing without <span class="hl-vocab">extravagant items</span> does not negatively affect the pleasures that a <span class="hl-vocab">fulfilling life</span> can bring.
+            </div>
+            <div class="para-note">
+                <strong>Ghi chú:</strong> Trả lời câu hỏi 1. Cấu trúc <em>"Although..., ..."</em> dùng để thừa nhận vai trò của tiền nhưng vẫn khẳng định lập trường chính. Cụm <em>"no guarantee of"</em> rất đắt giá.
+            </div>
+        </div>
+
+        <!-- Body 2 -->
+        <div class="para-block b2">
+            <div class="para-label">
+                <span class="para-tag">Body Paragraph 2: Other Factors</span>
+            </div>
+            <div class="para-text">
+                Another way people can gain <span class="hl-vocab">immense satisfaction</span> in their life is through their work. For instance, a doctor doing volunteer service in underdeveloped countries may earn <span class="hl-vocab">negligible income</span>, but the <span class="hl-vocab">intrinsic reward</span> of such work is <span class="hl-vocab">profoundly rewarding</span>. Not only that, but it provides <span class="hl-tech">long-term fulfilment</span> that one carries through life in the form of <span class="hl-vocab">rich memories</span> and the knowledge of a life well-lived. Finally, being surrounded by a <span class="hl-vocab">supportive social circle</span> is often considered the most valuable aspect of life, something that money certainly cannot buy.
+            </div>
+            <div class="para-note">
+                <strong>Ghi chú:</strong> Trả lời câu hỏi 2. Đưa ra 2 yếu tố khác: công việc (cống hiến) và gia đình/bạn bè. Dùng <em>"intrinsic reward"</em> để chỉ phần thưởng tinh thần, đối lập với tiền bạc.
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="para-block conc">
+            <div class="para-label">
+                <span class="para-tag">Conclusion</span>
+            </div>
+            <div class="para-text">
+                In conclusion, while money contributes to <span class="hl-vocab">material comfort</span>, it is not the <span class="hl-vocab">sole determinant</span> of happiness. Job satisfaction and meaningful relationships are <span class="hl-tech">equally, if not more, significant</span>. If more people strived towards <span class="hl-vocab">spiritual enrichment</span> rather than wealth, the world would be a more balanced place.
+            </div>
+            <div class="para-note">
+                <strong>Ghi chú:</strong> Kết bài khẳng định lại quan điểm. Cấu trúc <em>"equally, if not more, significant"</em> là một kỹ thuật nhấn mạnh mạnh mẽ ở Band 8-9.
+            </div>
+            <div class="word-count">Estimated Word Count: 290 words</div>
+        </div>
+
+        <div class="section-heading">
+            <span class="section-number">03</span> Cấu trúc 2 Câu hỏi - 2 Thân bài
+        </div>
+        <div class="card">
+            <div class="struct-list">
+                <div class="struct-item">
+                    <div class="struct-label">Question 1: Can people be happy without much money?</div>
+                    <div class="struct-note">→ <strong>Body 1:</strong> Khẳng định là có thể. Giải thích: Tiền không bảo đảm sức khỏe/an toàn, và chỉ cần đủ nhu cầu cơ bản là ổn.</div>
+                </div>
+                <div class="struct-item">
+                    <div class="struct-label">Question 2: What other factors contribute?</div>
+                    <div class="struct-note">→ <strong>Body 2:</strong> Nêu 2 yếu tố: (1) Ý nghĩa công việc (Job fulfilment), (2) Các mối quan hệ (Relationships).</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-heading">
+            <span class="section-number">04</span> Cấu trúc câu đáng học
+        </div>
+        <div class="struct-list">
+            <div class="struct-item">
+                <div class="struct-num">Structure 01</div>
+                <div class="struct-label">Concession with "Although" (Nhượng bộ)</div>
+                <div class="struct-example"><em>Although</em> money allows... luxuries..., a substantial number of people are happy without it.</div>
+                <div class="struct-note">Giúp bài viết khách quan hơn bằng cách thừa nhận một phần sự thật trước khi đưa ra ý chính.</div>
+            </div>
+            <div class="struct-item">
+                <div class="struct-num">Structure 02</div>
+                <div class="struct-label">Conditional with "As long as" (Miễn là)</div>
+                <div class="struct-example">...<em>as long as</em> people have the resources to cover their basic necessities...</div>
+                <div class="struct-note">Dùng để đặt ra điều kiện cụ thể cho một khẳng định, làm cho lập luận trở nên thực tế hơn.</div>
+            </div>
+            <div class="struct-item">
+                <div class="struct-num">Structure 03</div>
+                <div class="struct-label">Negative Inversion / Not only... but also</div>
+                <div class="struct-example"><em>Not only that, but</em> it provides long-term fulfilment...</div>
+                <div class="struct-note">Cách nối ý mạnh mẽ để bổ sung thông tin cho một luận điểm vừa nêu.</div>
+            </div>
+            <div class="struct-item">
+                <div class="struct-num">Structure 04</div>
+                <div class="struct-label">Participle Phrase for Definition</div>
+                <div class="struct-example">...factors <em>promoting happiness</em> / a doctor <em>doing volunteer service</em>...</div>
+                <div class="struct-note">Rút gọn mệnh đề quan hệ dạng chủ động (V-ing) giúp câu gọn gàng và academic.</div>
+            </div>
+            <div class="struct-item">
+                <div class="struct-num">Structure 05</div>
+                <div class="struct-label">Emphatic Parenthetical Expression</div>
+                <div class="struct-example">...are <em>equally, if not more,</em> significant.</div>
+                <div class="struct-note">Một "collocation" về cấu trúc cực kỳ hiệu quả để so sánh tầm quan trọng của các yếu tố.</div>
+            </div>
+            <div class="struct-item">
+                <div class="struct-num">Structure 06</div>
+                <div class="struct-label">Dummy Subject "It is"</div>
+                <div class="struct-example"><em>It is</em> entirely possible for people to be happy...</div>
+                <div class="struct-note">Cấu trúc chủ ngữ giả giúp câu văn mang tính khách quan và trang trọng hơn.</div>
+            </div>
+        </div>
+
+        <div class="section-heading">
+            <span class="section-number">05</span> Từ vựng Band cao
+        </div>
+        <div class="vocab-grid">
+            <div class="vocab-chip"><div class="vocab-en">Essential factors</div><div class="vocab-vn">Yếu tố thiết yếu</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Temporary enjoyment</div><div class="vocab-vn">Sự tận hưởng nhất thời</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Modest financial means</div><div class="vocab-vn">Điều kiện tài chính khiêm tốn</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Fostering contentment</div><div class="vocab-vn">Nuôi dưỡng sự hài lòng</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Intrinsic reward</div><div class="vocab-vn">Phần thưởng nội tại (tinh thần)</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Profoundly rewarding</div><div class="vocab-vn">Đáng giá một cách sâu sắc</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Long-term fulfilment</div><div class="vocab-vn">Sự mãn nguyện lâu dài</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Sole determinant</div><div class="vocab-vn">Yếu tố quyết định duy nhất</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Material comfort</div><div class="vocab-vn">Sự tiện nghi vật chất</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Supportive social circle</div><div class="vocab-vn">Vòng tròn xã hội hỗ trợ (người thân)</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Spiritual enrichment</div><div class="vocab-vn">Sự phong phú về tâm hồn</div></div>
+            <div class="vocab-chip"><div class="vocab-en">Guarantee of happiness</div><div class="vocab-vn">Sự đảm bảo cho hạnh phúc</div></div>
+        </div>
+
+        <div class="paraphrase-box">
+            <strong>Paraphrase "Money":</strong> wealth, financial means, resources, income, material comfort.<br>
+            <strong>Paraphrase "Happiness":</strong> contentment, satisfaction, fulfilment, pleasures, spiritual enrichment.
+        </div>
+
+        <div class="section-heading">
+            <span class="section-number">06</span> Đánh giá theo tiêu chí
+        </div>
+        <div class="scorecard">
+            <div class="score-cell">
+                <div class="score-criterion">Task Response</div>
+                <div class="score-note">Trả lời đầy đủ cả 2 câu hỏi riêng biệt. Quan điểm nhất quán xuyên suốt bài.</div>
+            </div>
+            <div class="score-cell">
+                <div class="score-criterion">C & C</div>
+                <div class="score-note">Sử dụng các từ nối trình tự (Firstly, Secondly, Another way) rất mạch lạc.</div>
+            </div>
+            <div class="score-cell">
+                <div class="score-criterion">Lexical Resource</div>
+                <div class="score-note">Từ vựng chính xác về chủ đề tâm lý/tài chính (intrinsic, determinant, modest).</div>
+            </div>
+            <div class="score-cell">
+                <div class="score-criterion">Grammar</div>
+                <div class="score-note">Kết hợp tốt các câu phức nhượng bộ và câu điều kiện. Không có lỗi sai.</div>
+            </div>
+        </div>
+
+        <div class="section-heading">
+            <span class="section-number">07</span> Tips & Watchout
+        </div>
+        <div class="tips-list">
+            <div class="tip-item">
+                <div class="tip-num">01</div>
+                <div class="tip-text"><strong>Trả lời trực tiếp:</strong> Cả 2 câu hỏi phải được trả lời ngay trong phần Introduction.</div>
+            </div>
+            <div class="tip-item">
+                <div class="tip-num">02</div>
+                <div class="tip-text"><strong>Cấu trúc đoạn:</strong> Dùng mỗi đoạn thân bài để trả lời cho một câu hỏi trong đề.</div>
+            </div>
+            <div class="tip-item">
+                <div class="tip-num">03</div>
+                <div class="tip-text"><strong>Độ dài cân bằng:</strong> Tránh viết quá dài cho câu 1 mà bỏ quên câu 2, hoặc ngược lại.</div>
+            </div>
+            <div class="tip-item">
+                <div class="tip-num">04</div>
+                <div class="tip-text"><strong>Signposting:</strong> Sử dụng các cụm như <em>"Regarding the first question..."</em> hoặc <em>"Turning to the second issue..."</em> nếu cần làm rõ.</div>
+            </div>
+            <div class="tip-item">
+                <div class="tip-num">05</div>
+                <div class="tip-text"><strong>Ví dụ cụ thể:</strong> Với các câu hỏi mở như "yếu tố khác", hãy đưa ra ví dụ cụ thể (VD: bác sĩ tình nguyện) để tăng sức thuyết phục.</div>
+            </div>
+            <div class="tip-item">
+                <div class="tip-num">06</div>
+                <div class="tip-text"><strong>Không cần chọn phe:</strong> Khác với Opinion essay, ở đây bạn chỉ cần cung cấp thông tin/trả lời câu hỏi.</div>
+            </div>
+            <div class="tip-item">
+                <div class="tip-num">07</div>
+                <div class="tip-text"><strong>Kết bài tóm gọn:</strong> Nhắc lại vắn tắt câu trả lời cho cả 2 câu hỏi.</div>
+            </div>
+        </div>
+
+        <div class="watchout" style="background:#fff1f2; border-color:#e11d48; color:#881337;">
+            <strong>Lỗi phổ biến nhất:</strong> Chỉ trả lời 1 trong 2 câu hỏi hoặc trả lời gộp chung vào 1 đoạn khiến giám khảo khó theo dõi. Hãy tách bạch 2 câu hỏi thành 2 phần rõ rệt.
+        </div>
+
+        <div class="article-footer">
+            &copy; 2024 IELTS Analysis System. Designed for native-speaking.vn. <br>
+            Source: Inspired by IELTS Liz Band 9 Model Answers.
+        </div>
+    </div>
+</body>
+</html>

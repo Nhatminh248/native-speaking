@@ -6,6 +6,8 @@ import IeltsWritingTaskTypesBody from '../../components/posts/IeltsWritingTaskTy
 import IeltsWritingOpinionAnalysisBody from '../../components/posts/IeltsWritingOpinionAnalysisBody.astro';
 import IeltsWritingDiscussionAnalysisBody from '../../components/posts/IeltsWritingDiscussionAnalysisBody.astro';
 import IeltsWritingAdvDisadvAnalysisBody from '../../components/posts/IeltsWritingAdvDisadvAnalysisBody.astro';
+import IeltsWritingProblemSolutionAnalysisBody from '../../components/posts/IeltsWritingProblemSolutionAnalysisBody.astro';
+import IeltsWritingTwoPartAnalysisBody from '../../components/posts/IeltsWritingTwoPartAnalysisBody.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -32,6 +34,10 @@ const { Content } = await post.render();
     ? <IeltsWritingDiscussionAnalysisBody />
     : post.slug === 'ielts-writing-adv-disadv-analysis'
     ? <IeltsWritingAdvDisadvAnalysisBody />
+    : post.slug === 'ielts-writing-problem-solution-analysis'
+    ? <IeltsWritingProblemSolutionAnalysisBody />
+    : post.slug === 'ielts-writing-two-part-question-analysis'
+    ? <IeltsWritingTwoPartAnalysisBody />
     : <div class="prose"><Content /></div>
   }
 </BaseLayout>
