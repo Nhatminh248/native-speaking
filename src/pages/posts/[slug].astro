@@ -9,6 +9,8 @@ import IeltsWritingAdvDisadvAnalysisBody from '../../components/posts/IeltsWriti
 import IeltsWritingProblemSolutionAnalysisBody from '../../components/posts/IeltsWritingProblemSolutionAnalysisBody.astro';
 import IeltsWritingTwoPartAnalysisBody from '../../components/posts/IeltsWritingTwoPartAnalysisBody.astro';
 import IeltsCollocationsBody from '../../components/posts/IeltsCollocationsBody.astro';
+import IeltsTask1LineGraphBody from '../../components/posts/IeltsTask1LineGraphBody.astro';
+import IeltsTask1BarChartBody from '../../components/posts/IeltsTask1BarChartBody.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -41,6 +43,10 @@ const { Content } = await post.render();
     ? <IeltsWritingTwoPartAnalysisBody />
     : post.slug === 'ielts-collocations'
     ? <IeltsCollocationsBody />
+    : post.slug === 'ielts-writing-task1-line-graph'
+    ? <IeltsTask1LineGraphBody />
+    : post.slug === 'ielts-writing-task1-bar-chart'
+    ? <IeltsTask1BarChartBody />
     : <div class="prose"><Content /></div>
   }
 </BaseLayout>
