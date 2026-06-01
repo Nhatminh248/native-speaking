@@ -14,6 +14,8 @@ import IeltsTask1BarChartBody from '../../components/posts/IeltsTask1BarChartBod
 import IeltsTask1PieChartBody from '../../components/posts/IeltsTask1PieChartBody.astro';
 import IeltsTask1TableBody from '../../components/posts/IeltsTask1TableBody.astro';
 import IeltsTask1MixedChartBody from '../../components/posts/IeltsTask1MixedChartBody.astro';
+import IeltsTask1ProcessBody from '../../components/posts/IeltsTask1ProcessBody.astro';
+import IeltsTask1MapBody from '../../components/posts/IeltsTask1MapBody.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -56,6 +58,10 @@ const { Content } = await post.render();
     ? <IeltsTask1TableBody />
     : post.slug === 'ielts-writing-task1-mixed-chart'
     ? <IeltsTask1MixedChartBody />
+    : post.slug === 'ielts-writing-task1-process'
+    ? <IeltsTask1ProcessBody />
+    : post.slug === 'ielts-writing-task1-map'
+    ? <IeltsTask1MapBody />
     : <div class="prose"><Content /></div>
   }
 </BaseLayout>
