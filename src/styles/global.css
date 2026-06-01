@@ -829,3 +829,78 @@ body {
   margin-bottom: 0.5rem;
   font-weight: 300;
 }
+
+/* FEATURED SECTION */
+.featured-section {
+  padding: 4rem 5vw 0;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.featured-card {
+  display: block;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 3rem;
+  text-decoration: none;
+  border-radius: 0;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.featured-card::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,64,26,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.featured-card-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.featured-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.featured-card-desc {
+  font-size: 1rem;
+  color: rgba(245,240,232,0.7);
+  line-height: 1.7;
+  max-width: 500px;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.featured-card-cta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
