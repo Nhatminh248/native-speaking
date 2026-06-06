@@ -1,32 +1,40 @@
 
 # Claude Code Prompt — IELTS Task 2 Writing Structure Guide
 
-## Paste this entire prompt into Claude Code
+You are working inside an existing Astro blog project.
 
----
+FIRST, before writing any code, inspect the project to understand its conventions:
+1. Look at src/content/ or src/pages/ to find where blog posts live and what
+   file format they use (.md, .mdx, or .astro)
+2. Open 2–3 existing post files to read their frontmatter schema (title, date,
+   description, tags, layout, etc.)
+3. Find the layout component used by posts (check the `layout` frontmatter key
+   or the wrapping component) and read it to understand available CSS classes,
+   typography scale, spacing tokens, and any design system already in use
+4. Check if MDX is configured (look for @astrojs/mdx in astro.config.mjs)
 
-Create a self-contained React component (`IELTSWritingGuide.jsx`) to be used
-inside an Astro project that has @astrojs/react configured. The component will
-be imported into an .astro page using the `client:load` directive. Do NOT use
-any Next.js-specific APIs. Tailwind CSS is already configured in the Astro project.
+THEN create a new blog post for an IELTS Task 2 Writing structure guide,
+following the EXACT same conventions you found:
+- Same file format as existing posts
+- Same frontmatter fields (fill in appropriate values for title, date,
+  description, tags)
+- Same layout component
+- Do NOT introduce new Tailwind utility classes or CSS that conflict with the
+  project's existing styling — use the CSS classes, variables, or design tokens
+  already present in the project
 
----
+For the interactive parts (tab switching, accordions, variation toggles):
+- If the post format is .mdx: create the interactive UI as a separate
+  React component at src/components/IELTSOutlineWidget.jsx (with client:load
+  when used in the .mdx file). Style this component using only CSS variables
+  or class names already defined in the project's global stylesheet.
+- If the post format is .astro or .md only (no MDX): implement all interactivity
+  using a <script> tag with vanilla JavaScript. Use querySelector and
+  classList.toggle — no framework needed.
 
-## Technical requirements
-
-- React functional component, useState only (no external state library)
-- Tailwind CSS utility classes throughout — no inline style objects, no hardcoded px values
-- No external libraries except React and Tailwind
-- Default export
-- Fully responsive: single-column on mobile, comfortable on desktop (max-w-4xl centered)
-- The component must be drop-in ready for a Next.js or Create React App project
-
-// Usage in an .astro file:
-// import IELTSWritingGuide from '../components/IELTSWritingGuide'
-// Then: <IELTSWritingGuide client:load />
-
----
-
+Output files:
+- The blog post file (in the correct content folder, correct format)
+- The interactive component file only if MDX path is taken
 ## Visual design specification
 
 ### Paragraph color coding (use Tailwind classes)
