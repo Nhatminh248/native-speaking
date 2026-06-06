@@ -21,6 +21,13 @@ const { title = 'Speak Native', description = '' } = Astro.props;
   />
 </head>
 <body>
+  <nav class="site-nav">
+    <a href={import.meta.env.BASE_URL} class="site-nav-brand">Speak <em>Native.</em></a>
+    <div class="site-nav-links">
+      <a href={import.meta.env.BASE_URL} class="site-nav-link">Posts</a>
+      <a href={`${import.meta.env.BASE_URL}writing/task2-guide`} class="site-nav-link site-nav-link--highlight">Task 2 Guide</a>
+    </div>
+  </nav>
   <slot />
   <footer class="footer">
     <div class="footer-brand">Speak <em>Native.</em></div>
