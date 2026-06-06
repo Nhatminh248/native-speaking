@@ -17,6 +17,7 @@ import IeltsTask1MixedChartBody from '../../components/posts/IeltsTask1MixedChar
 import IeltsTask1ProcessBody from '../../components/posts/IeltsTask1ProcessBody.astro';
 import IeltsTask1MapBody from '../../components/posts/IeltsTask1MapBody.astro';
 import IeltsWritingTask2HowToBody from '../../components/posts/IeltsWritingTask2HowToBody.astro';
+import IeltsWritingTask2StructureGuideBody from '../../components/posts/IeltsWritingTask2StructureGuideBody.astro';
 import SameQuestionTwoWorldsBody from '../../components/posts/SameQuestionTwoWorldsBody.astro';
 
 export async function getStaticPaths() {
@@ -66,6 +67,8 @@ const { Content } = await post.render();
     ? <IeltsTask1MapBody />
     : post.slug === 'ielts-writing-task2-how-to'
     ? <IeltsWritingTask2HowToBody />
+    : post.slug === 'ielts-writing-task2-structure-guide'
+    ? <IeltsWritingTask2StructureGuideBody />
     : post.slug === 'same-question-two-worlds'
     ? <SameQuestionTwoWorldsBody />
     : <div class="prose"><Content /></div>

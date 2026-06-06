@@ -4,7 +4,11 @@
       "Bash(npm install *)",
       "WebSearch",
       "WebFetch(domain:ieltsliz.com)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git revert *)"
     ]
   }
 }
