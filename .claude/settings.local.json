@@ -8,7 +8,23 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "Bash(git revert *)"
+      "Bash(git revert *)",
+      "Bash(gh run *)",
+      "Bash(curl -s http://localhost:4321/native-speaking/posts/ielts-writing-task2-structure-guide/)",
+      "Bash(kill %1)",
+      "Bash(npx astro *)",
+      "Bash(wait)",
+      "Bash(curl -s http://localhost:4321/native-speaking/)",
+      "Bash(xargs ls)",
+      "Bash(curl -s \"http://localhost:4321/native-speaking/\")",
+      "Bash(curl -v \"http://localhost:4321/native-speaking/\")",
+      "Bash(pkill -f \"astro dev\")",
+      "Bash(pkill -f vite)",
+      "Bash(tee /tmp/astro-dev.log)",
+      "Read(//tmp/**)",
+      "Bash(tee /tmp/astro-verbose.log)",
+      "Bash(awk NR==24{print; print length\\($0\\)} *)",
+      "Bash(python3 *)"
     ]
   }
 }
